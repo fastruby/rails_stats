@@ -10,6 +10,9 @@ module RailsStats
                   'Model tests',
                   'Mailer tests',
                   'Integration tests',
+                  'Request tests',
+                  'Library tests',
+                  'Cucumber tests',
                   'Functional tests (old)',
                   'Unit tests (old)']
 

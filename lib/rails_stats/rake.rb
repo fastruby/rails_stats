@@ -9,6 +9,7 @@ module RailsStats
       %w(Helpers            app/helpers),
       %w(Models             app/models),
       %w(Mailers            app/mailers),
+      %w(Observers          app/observers),
       %w(Javascripts        app/assets/javascripts),
       %w(Libraries          lib/),
       %w(APIs               app/apis),
@@ -18,7 +19,16 @@ module RailsStats
       %w(Mailer\ tests      test/mailers),
       %w(Integration\ tests test/integration),
       %w(Functional\ tests\ (old)  test/functional),
-      %w(Unit\ tests \ (old)       test/unit)
+      %w(Unit\ tests \ (old)       test/unit),
+      %w(Controller\ tests  spec/controllers),
+      %w(Helper\ tests      spec/helpers),
+      %w(Model\ tests       spec/models),
+      %w(Mailer\ tests      spec/mailers),
+      %w(Integration\ tests spec/integration),
+      %w(Integration\ tests spec/integrations),
+      %w(Request\ tests spec/requests),
+      %w(Library\ tests spec/lib),
+      %w(Cucumber\ tests features),
     ]
 
     def calculate(root_directory)
