@@ -24,6 +24,10 @@ module RailsStats
         end_block_comment: /^\s*###/,
         class: /^\s*class\s+[_A-Z]/,
         method: /[-=]>/,
+      },
+      feature: {
+        class: /^\s*Feature:/,
+        method: /^\s*Scenario:/,
       }
     }
 

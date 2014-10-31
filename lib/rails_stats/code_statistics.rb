@@ -40,7 +40,7 @@ module RailsStats
         Hash[@pairs.map{|pair| [pair.first, calculate_directory_statistics(pair.last)]}]
       end
 
-      def calculate_directory_statistics(directory, pattern = /.*\.(rb|js|coffee)$/)
+      def calculate_directory_statistics(directory, pattern = /.*\.(rb|js|coffee|feature)$/)
         stats = CodeStatisticsCalculator.new
 
         Dir.foreach(directory) do |file_name|
