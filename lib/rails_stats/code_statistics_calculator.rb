@@ -2,7 +2,7 @@
 
 module RailsStats
   class CodeStatisticsCalculator #:nodoc:
-    attr_reader :lines, :code_lines, :classes, :methods
+    attr_reader :lines, :code_lines, :classes, :methods, :test
 
     PATTERNS = {
       rb: {
@@ -31,11 +31,12 @@ module RailsStats
       }
     }
 
-    def initialize(lines = 0, code_lines = 0, classes = 0, methods = 0)
-      @lines = lines
-      @code_lines = code_lines
-      @classes = classes
-      @methods = methods
+    def initialize(test=false)
+      @test = test
+      @lines = 0
+      @code_lines = 0
+      @classes = 0
+      @methods = 0
     end
 
     def add(code_statistics_calculator)

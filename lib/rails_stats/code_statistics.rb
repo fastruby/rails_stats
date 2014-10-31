@@ -1,30 +1,29 @@
 # railties/lib/rails/code_statistics.rb
 
+require 'rails_stats/app_statistics'
 require 'rails_stats/code_statistics_calculator'
+require 'debugger'
 
 module RailsStats
-  class CodeStatistics #:nodoc:
+  class CodeStatistics
 
-    TEST_TYPES = ['Controller tests',
-                  'Helper tests',
-                  'Model tests',
-                  'Mailer tests',
-                  'Integration tests',
-                  'Request tests',
-                  'Library tests',
-                  'Cucumber tests',
-                  'Functional tests (old)',
-                  'Unit tests (old)']
+    RAILS_APP_FOLDERS = ['models',
+                         'controllers',
+                         'helpers',
+                         'mailers',
+                         'views',
+                         'assets']
 
-    def initialize(*pairs)
-      @pairs      = pairs
-      @statistics = calculate_statistics
-      @total      = calculate_total if pairs.length > 1
+    def initialize(root_directory)
+      @root_directory = root_directory
+      @directories    = calculate_directories
+      @statistics     = calculate_statistics
+      @total          = calculate_total
     end
 
     def to_s
       print_header
-      @pairs.each { |pair| print_line(pair.first, @statistics[pair.first]) }
+      @statistics.each { |key, stats| print_line(key, stats) }
       print_splitter
 
       if @total
@@ -36,26 +35,39 @@ module RailsStats
     end
 
     private
-      def calculate_statistics
-        Hash[@pairs.map{|pair| [pair.first, calculate_directory_statistics(pair.last)]}]
+      def calculate_directories
+        out = []
+        out += calculate_app_directories
+        out
       end
 
-      def calculate_directory_statistics(directory, pattern = /.*\.(rb|js|coffee|feature)$/)
-        stats = CodeStatisticsCalculator.new
-
-        Dir.foreach(directory) do |file_name|
-          path = "#{directory}/#{file_name}"
-
-          if File.directory?(path) && (/^\./ !~ file_name)
-            stats.add(calculate_directory_statistics(path, pattern))
-          end
-
-          next unless file_name =~ pattern
-
-          stats.add_by_file_path(path)
+      def calculate_app_directories
+        app_roots.collect do |root_path|
+          AppStatistics.new(root_path)
         end
+      end
 
-        stats
+      def app_roots
+        roots = {}
+        RAILS_APP_FOLDERS.each do |dirname|
+          Dir[File.join(@root_directory, "**", "app", dirname)].each do |marker_path|
+            next unless File.directory?(marker_path)
+            parent = File.dirname(marker_path)
+            roots[File.absolute_path(parent)] = true
+          end
+        end
+        roots.keys
+      end
+
+      def calculate_statistics
+        out = {}
+        @directories.each do |directory|
+          directory.statistics.each do |key, stats|
+            out[key] ||= CodeStatisticsCalculator.new
+            out[key].add(stats)
+          end
+        end
+        out
       end
 
       def calculate_total
@@ -66,13 +78,13 @@ module RailsStats
 
       def calculate_code
         code_loc = 0
-        @statistics.each { |k, v| code_loc += v.code_lines unless TEST_TYPES.include? k }
+        @statistics.each { |k, v| code_loc += v.code_lines unless v.test }
         code_loc
       end
 
       def calculate_tests
         test_loc = 0
-        @statistics.each { |k, v| test_loc += v.code_lines if TEST_TYPES.include? k }
+        @statistics.each { |k, v| test_loc += v.code_lines if v.test }
         test_loc
       end
 
