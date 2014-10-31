@@ -12,7 +12,7 @@ module RailsStats
 
     def initialize(root_directory)
       @root_directory = root_directory
-      @directories    = calculate_directories
+      @projects       = calculate_projects
       @statistics     = calculate_statistics
       @total          = calculate_total
     end
@@ -31,13 +31,13 @@ module RailsStats
     end
 
     private
-      def calculate_directories
+      def calculate_projects
         out = []
-        out += calculate_app_directories
+        out += calculate_app_projects
         out
       end
 
-      def calculate_app_directories
+      def calculate_app_projects
         app_roots.collect do |root_path|
           AppStatistics.new(root_path)
         end
@@ -60,8 +60,8 @@ module RailsStats
 
       def calculate_statistics
         out = {}
-        @directories.each do |directory|
-          directory.statistics.each do |key, stats|
+        @projects.each do |project|
+          project.statistics.each do |key, stats|
             out[key] ||= CodeStatisticsCalculator.new
             out[key].add(stats)
           end
