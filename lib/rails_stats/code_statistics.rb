@@ -1,9 +1,5 @@
 # railties/lib/rails/code_statistics.rb
 
-require 'rails_stats/app_statistics'
-require 'rails_stats/code_statistics_calculator'
-require 'debugger'
-
 module RailsStats
   class CodeStatistics
 
@@ -54,7 +50,7 @@ module RailsStats
             next unless File.directory?(marker_path)
 
             # TODO: ignore vendor?
-            
+
             parent = File.dirname(marker_path)
             roots[File.absolute_path(parent)] = true
           end

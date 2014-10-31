@@ -26,3 +26,5 @@ Directory: ../../path/to/app/
 
 * option to print out by app directory (stats per engine)
 * Add views (jbuilder, erb, haml) but don't count towards ratios
+* Support JS for projects that have it in public
+* Add css but don't count towards ratios

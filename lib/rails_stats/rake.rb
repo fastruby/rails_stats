@@ -1,7 +1,5 @@
 # railties/lib/rails/tasks/statistics.rake
 
-require 'rails_stats/code_statistics'
-
 module RailsStats
   module Rake
     STATS_DIRECTORIES = [
