@@ -1,4 +1,5 @@
 require 'rails_stats/code_statistics_calculator'
+require 'rails_stats/inflector'
 
 module RailsStats
   class AppStatistics
@@ -64,7 +65,9 @@ module RailsStats
 
     def path_to_type(path)
       folder = File.basename(path)
-      # TODO: prettier (pluralize?)
+      folder = Inflector.pluralize(folder)
+      folder = Inflector.humanize(folder)
+      folder = Inflector.titleize(folder)
       folder
     end
   end
