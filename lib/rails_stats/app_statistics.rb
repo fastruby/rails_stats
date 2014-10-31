@@ -39,6 +39,10 @@ module RailsStats
         out[key] ||= CodeStatisticsCalculator.new
         out[key].add(calculate_directory_statistics(dir_path))
       end
+
+      out.keys.each do |key|
+        out.delete(key) if out[key].lines == 0
+      end
       out
     end
 

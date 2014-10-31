@@ -52,6 +52,9 @@ module RailsStats
         RAILS_APP_FOLDERS.each do |dirname|
           Dir[File.join(@root_directory, "**", "app", dirname)].each do |marker_path|
             next unless File.directory?(marker_path)
+
+            # TODO: ignore vendor?
+            
             parent = File.dirname(marker_path)
             roots[File.absolute_path(parent)] = true
           end
