@@ -10,19 +10,9 @@ module RailsStats
                          'views',
                          'assets']
 
-    SPEC_FOLDERS = ['controllers',
-                    'lib',
-                    'features',
-                    'helpers',
-                    'models',
-                    'requests',
-                    'routing',
-                    'integrations',
-                    'integration',
-                    'mailers']
-
     def initialize(root_directory)
       @root_directory = root_directory
+      @key_concepts   = calculate_key_concepts
       @projects       = calculate_projects
       @statistics     = calculate_statistics
       @total          = calculate_total
@@ -42,9 +32,21 @@ module RailsStats
     end
 
     private
+      def calculate_key_concepts
+        # returns names of main things like models, controllers, services, etc
+        concepts = {}
+        app_projects.each do |project|
+          project.key_concepts.each do |key|
+            concepts[key] = true
+          end
+        end
+
+        concepts.keys
+      end
+
       def calculate_projects
         out = []
-        out += calculate_app_projects
+        out += app_projects
         out += calculate_root_projects
         out += calculate_spec_projects
         out += calculate_test_projects
@@ -52,7 +54,11 @@ module RailsStats
         out
       end
 
-      def calculate_app_projects    
+      def app_projects
+        @app_projects ||= calculate_app_projects
+      end
+
+      def calculate_app_projects
         apps = Util.calculate_projects(@root_directory, "**", "app", RAILS_APP_FOLDERS)
         apps.collect do |root_path|
           AppStatistics.new(root_path)
@@ -60,9 +66,9 @@ module RailsStats
       end
 
       def calculate_spec_projects
-        specs = Util.calculate_projects(@root_directory, "**", "spec", SPEC_FOLDERS)
+        specs = Util.calculate_projects(@root_directory, "**", "spec", "spec_helper.rb")
         specs.collect do |root_path|
-          SpecStatistics.new(root_path)
+          SpecStatistics.new(root_path, @key_concepts)
         end
       end
 

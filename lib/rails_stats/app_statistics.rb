@@ -9,6 +9,9 @@ module RailsStats
       @total      = calculate_total
     end
 
+    def key_concepts
+      directories.collect{ |path| File.basename(path) }
+    end
 
     private
 
@@ -25,6 +28,7 @@ module RailsStats
     end
 
     def directories
+      return @directories if @directories
       out = []
       Dir.foreach(@directory) do |file_name|
         path = "#{@directory}/#{file_name}"

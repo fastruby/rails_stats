@@ -10,9 +10,7 @@ module RailsStats
       children.each do |dirname|
         child_folder_pattern = File.join(*(parent.dup + [dirname]))
         Dir[child_folder_pattern].each do |marker_path|
-          next unless File.directory?(marker_path)
-
-          # TODO: ignore vendor?
+          next if marker_path =~ /\/vendor\//
 
           projects[File.absolute_path(File.dirname(marker_path))] = true
         end
@@ -24,10 +22,22 @@ module RailsStats
       out
     end
 
+    def calculate_file_statistics(file, type = :code, &block)
+      stats = CodeStatisticsCalculator.new
+
+      files = [file].flatten
+
+      files.each do |path|
+        stats.add_by_file_path(path)
+      end
+
+      stats
+    end
+
     def calculate_statistics(directories, type = :code, &block)
       out = {}
 
-      is_test = type.to_s == "test"
+      is_test = (type.to_s == "test")
 
       directories.each do |dir_path|
         key = nil
