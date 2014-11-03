@@ -1,13 +1,14 @@
 module RailsStats
   class AppStatistics
-    attr_reader :statistics
-    attr_reader :total
+    attr_reader :statistics, :total, :test
 
-    def initialize(app_directory)
-      @app_directory = app_directory
-      @statistics    = calculate_statistics
-      @total         = calculate_total
+    def initialize(directory)
+      @test = false
+      @directory  = directory
+      @statistics = calculate_statistics
+      @total      = calculate_total
     end
+
 
     private
 
@@ -25,8 +26,8 @@ module RailsStats
 
     def directories
       out = []
-      Dir.foreach(@app_directory) do |file_name|
-        path = "#{@app_directory}/#{file_name}"
+      Dir.foreach(@directory) do |file_name|
+        path = "#{@directory}/#{file_name}"
         next unless File.directory?(path)
         next if (/^\./ =~ file_name)
 

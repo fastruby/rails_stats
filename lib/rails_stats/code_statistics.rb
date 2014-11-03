@@ -10,6 +10,17 @@ module RailsStats
                          'views',
                          'assets']
 
+    SPEC_FOLDERS = ['controllers',
+                    'lib',
+                    'features',
+                    'helpers',
+                    'models',
+                    'requests',
+                    'routing',
+                    'integrations',
+                    'integration',
+                    'mailers']
+
     def initialize(root_directory)
       @root_directory = root_directory
       @projects       = calculate_projects
@@ -34,35 +45,44 @@ module RailsStats
       def calculate_projects
         out = []
         out += calculate_app_projects
+        out += calculate_root_projects
+        out += calculate_spec_projects
+        out += calculate_test_projects
+        out += calculate_cucumber_projects
         out
       end
 
-      def calculate_app_projects
-        app_roots.collect do |root_path|
+      def calculate_app_projects    
+        apps = Util.calculate_projects(@root_directory, "**", "app", RAILS_APP_FOLDERS)
+        apps.collect do |root_path|
           AppStatistics.new(root_path)
         end
       end
 
-      def app_roots
-        roots = {}
-        RAILS_APP_FOLDERS.each do |dirname|
-          Dir[File.join(@root_directory, "**", "app", dirname)].each do |marker_path|
-            next unless File.directory?(marker_path)
-
-            # TODO: ignore vendor?
-
-            parent = File.dirname(marker_path)
-            roots[File.absolute_path(parent)] = true
-          end
+      def calculate_spec_projects
+        specs = Util.calculate_projects(@root_directory, "**", "spec", SPEC_FOLDERS)
+        specs.collect do |root_path|
+          SpecStatistics.new(root_path)
         end
-        roots.keys
+      end
+
+      def calculate_test_projects
+        [] # TODO: test unit
+      end
+
+      def calculate_root_projects
+        [] # TODO: lib, initializers, etc
+      end
+
+      def calculate_cucumber_projects
+        [] # TODO: cucumber
       end
 
       def calculate_statistics
         out = {}
         @projects.each do |project|
           project.statistics.each do |key, stats|
-            out[key] ||= CodeStatisticsCalculator.new
+            out[key] ||= CodeStatisticsCalculator.new(project.test)
             out[key].add(stats)
           end
         end
