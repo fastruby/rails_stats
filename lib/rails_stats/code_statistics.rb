@@ -81,7 +81,10 @@ module RailsStats
       end
 
       def calculate_cucumber_projects
-        [] # TODO: cucumber
+        cukes = Util.calculate_projects(@root_directory, "**", "*.feature")
+        cukes.collect do |root_path|
+          CucumberStatistics.new(root_path)
+        end
       end
 
       def calculate_statistics

@@ -45,7 +45,7 @@ module RailsStats
         if file_path =~ /.*_spec.rb$/
           key = categorize_file(file_path)
         else
-          key = "Test Support"
+          key = "Spec Support"
         end
 
         out[key] ||= []
