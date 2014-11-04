@@ -5,7 +5,7 @@ See stuff about a Rails app.
 ```bash
 $ bundle exec thor stats:calculate ../../path/to/app/
 
-Directory: ../../path/to/app/
+Directory: ~/path/to/app/
 
 +----------------------+-------+-------+---------+---------+-----+-------+
 | Name                 | Lines |   LOC | Classes | Methods | M/C | LOC/M |
@@ -15,10 +15,18 @@ Directory: ../../path/to/app/
 | Jobs                 |   399 |   295 |      11 |      33 |   3 |     6 |
 | Models               |  4584 |  3509 |      61 |     526 |   8 |     4 |
 | Observers            |    42 |    22 |       2 |       5 |   2 |     2 |
+| Libraries            |  2987 |  2272 |      30 |     287 |   9 |     5 |
+| Configuration        |  1233 |   669 |       4 |      17 |   4 |    37 |
+| Spec Support         |  1416 |  1152 |       4 |      30 |   7 |    36 |
+| Integration Tests    |    91 |    73 |       0 |       1 |   0 |    71 |
+| Lib Tests            |   101 |    83 |       0 |       1 |   0 |    81 |
+| Model Tests          |  3397 |  2522 |       0 |      18 |   0 |   138 |
+| Cucumber Support     |   739 |   521 |       0 |       1 |   0 |   519 |
+| Cucumber Features    |  2711 |  2487 |      29 |     145 |   5 |    15 |
 +----------------------+-------+-------+---------+---------+-----+-------+
-| Total                |  9130 |  7201 |     151 |     983 |   6 |     5 |
+| Total                | 21805 | 16980 |     218 |    1483 |   6 |     9 |
 +----------------------+-------+-------+---------+---------+-----+-------+
-  Code LOC: 7201     Test LOC: 0     Code to Test Ratio: 1:0.0
+  Code LOC: 10142     Test LOC: 6838     Code to Test Ratio: 1:0.7
 
 ```
 
