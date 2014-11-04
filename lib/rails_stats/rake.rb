@@ -31,7 +31,6 @@ module RailsStats
 
     def calculate(root_directory)
       puts "\nDirectory: #{root_directory}\n\n"
-      stats_dirs = STATS_DIRECTORIES.collect { |name, dir| [ name, "#{root_directory}/#{dir}" ] }.select { |name, dir| File.directory?(dir) }
       CodeStatistics.new(root_directory).to_s
     end
   end
