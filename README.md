@@ -3,7 +3,7 @@
 See stuff about a Rails app.
 
 ```bash
-$ bundle exec thor stats:calculate ../../path/to/app/
+$ bundle exec thor stats:calculate ~/path/to/app/
 
 Directory: ~/path/to/app/
 
@@ -36,3 +36,5 @@ Directory: ~/path/to/app/
 * Add views (jbuilder, erb, haml) but don't count towards ratios
 * Support JS for projects that have it in public
 * Add css but don't count towards ratios
+* output other metrics like number of tables and columns
+* test unit support
