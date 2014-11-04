@@ -77,7 +77,7 @@ module RailsStats
       end
 
       def calculate_root_projects
-        [] # TODO: lib, initializers, etc
+        [RootStatistics.new(@root_directory)]
       end
 
       def calculate_cucumber_projects

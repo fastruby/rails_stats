@@ -12,6 +12,7 @@ require 'rails_stats/util'
 require 'rails_stats/app_statistics'
 require 'rails_stats/spec_statistics'
 require 'rails_stats/cucumber_statistics'
+require 'rails_stats/root_statistics'
 require 'rails_stats/code_statistics'
 
 require "rails_stats/rake"

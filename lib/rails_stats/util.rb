@@ -37,9 +37,12 @@ module RailsStats
     def calculate_statistics(directories, type = :code, &block)
       out = {}
 
+      directories = [directories].flatten
       is_test = (type.to_s == "test")
 
       directories.each do |dir_path|
+        next unless File.directory?(dir_path)
+        
         key = nil
         if block_given?
           key = yield(dir_path)
