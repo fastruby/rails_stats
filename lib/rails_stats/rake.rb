@@ -1,7 +1,5 @@
 # railties/lib/rails/tasks/statistics.rake
 
-require 'rails_stats/code_statistics'
-
 module RailsStats
   module Rake
     STATS_DIRECTORIES = [
@@ -33,8 +31,7 @@ module RailsStats
 
     def calculate(root_directory)
       puts "\nDirectory: #{root_directory}\n\n"
-      stats_dirs = STATS_DIRECTORIES.collect { |name, dir| [ name, "#{root_directory}/#{dir}" ] }.select { |name, dir| File.directory?(dir) }
-      CodeStatistics.new(*stats_dirs).to_s
+      CodeStatistics.new(root_directory).to_s
     end
   end
 end

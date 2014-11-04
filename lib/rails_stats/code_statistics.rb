@@ -1,30 +1,26 @@
 # railties/lib/rails/code_statistics.rb
 
-require 'rails_stats/code_statistics_calculator'
-
 module RailsStats
-  class CodeStatistics #:nodoc:
+  class CodeStatistics
 
-    TEST_TYPES = ['Controller tests',
-                  'Helper tests',
-                  'Model tests',
-                  'Mailer tests',
-                  'Integration tests',
-                  'Request tests',
-                  'Library tests',
-                  'Cucumber tests',
-                  'Functional tests (old)',
-                  'Unit tests (old)']
+    RAILS_APP_FOLDERS = ['models',
+                         'controllers',
+                         'helpers',
+                         'mailers',
+                         'views',
+                         'assets']
 
-    def initialize(*pairs)
-      @pairs      = pairs
-      @statistics = calculate_statistics
-      @total      = calculate_total if pairs.length > 1
+    def initialize(root_directory)
+      @root_directory = root_directory
+      @key_concepts   = calculate_key_concepts
+      @projects       = calculate_projects
+      @statistics     = calculate_statistics
+      @total          = calculate_total
     end
 
     def to_s
       print_header
-      @pairs.each { |pair| print_line(pair.first, @statistics[pair.first]) }
+      @statistics.each { |key, stats| print_line(key, stats) }
       print_splitter
 
       if @total
@@ -36,26 +32,80 @@ module RailsStats
     end
 
     private
-      def calculate_statistics
-        Hash[@pairs.map{|pair| [pair.first, calculate_directory_statistics(pair.last)]}]
-      end
-
-      def calculate_directory_statistics(directory, pattern = /.*\.(rb|js|coffee|feature)$/)
-        stats = CodeStatisticsCalculator.new
-
-        Dir.foreach(directory) do |file_name|
-          path = "#{directory}/#{file_name}"
-
-          if File.directory?(path) && (/^\./ !~ file_name)
-            stats.add(calculate_directory_statistics(path, pattern))
+      def calculate_key_concepts
+        # returns names of main things like models, controllers, services, etc
+        concepts = {}
+        app_projects.each do |project|
+          project.key_concepts.each do |key|
+            concepts[key] = true
           end
-
-          next unless file_name =~ pattern
-
-          stats.add_by_file_path(path)
         end
 
-        stats
+        # TODO: maybe gem names?
+
+        concepts.keys
+      end
+
+      def calculate_projects
+        out = []
+        out += app_projects
+        out += calculate_root_projects
+        out += calculate_gem_projects
+        out += calculate_spec_projects
+        out += calculate_test_projects
+        out += calculate_cucumber_projects
+        out
+      end
+
+      def app_projects
+        @app_projects ||= calculate_app_projects
+      end
+
+      def calculate_app_projects
+        apps = Util.calculate_projects(@root_directory, "**", "app", RAILS_APP_FOLDERS)
+        apps.collect do |root_path|
+          AppStatistics.new(root_path)
+        end
+      end
+
+      def calculate_gem_projects
+        gems = Util.calculate_projects(@root_directory, "**", "*.gemspec")
+        gems.collect do |root_path|
+          GemStatistics.new(root_path)
+        end
+      end
+
+      def calculate_spec_projects
+        specs = Util.calculate_projects(@root_directory, "**", "spec", "spec_helper.rb")
+        specs.collect do |root_path|
+          SpecStatistics.new(root_path, @key_concepts)
+        end
+      end
+
+      def calculate_test_projects
+        [] # TODO: test unit
+      end
+
+      def calculate_root_projects
+        [RootStatistics.new(@root_directory)]
+      end
+
+      def calculate_cucumber_projects
+        cukes = Util.calculate_projects(@root_directory, "**", "*.feature")
+        cukes.collect do |root_path|
+          CucumberStatistics.new(root_path)
+        end
+      end
+
+      def calculate_statistics
+        out = {}
+        @projects.each do |project|
+          project.statistics.each do |key, stats|
+            out[key] ||= CodeStatisticsCalculator.new(project.test)
+            out[key].add(stats)
+          end
+        end
+        out
       end
 
       def calculate_total
@@ -66,13 +116,13 @@ module RailsStats
 
       def calculate_code
         code_loc = 0
-        @statistics.each { |k, v| code_loc += v.code_lines unless TEST_TYPES.include? k }
+        @statistics.each { |k, v| code_loc += v.code_lines unless v.test }
         code_loc
       end
 
       def calculate_tests
         test_loc = 0
-        @statistics.each { |k, v| test_loc += v.code_lines if TEST_TYPES.include? k }
+        @statistics.each { |k, v| test_loc += v.code_lines if v.test }
         test_loc
       end
 
