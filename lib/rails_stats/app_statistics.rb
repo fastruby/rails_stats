@@ -31,13 +31,29 @@ module RailsStats
       return @directories if @directories
       out = []
       Dir.foreach(@directory) do |file_name|
-        path = "#{@directory}/#{file_name}"
+        path = File.join(@directory, file_name)
         next unless File.directory?(path)
         next if (/^\./ =~ file_name)
-
-        # TODO: filter anything?
+        next if file_name == "assets" # doing separately
+        next if file_name == "views"  # TODO
         out << path
       end
+
+      assets = File.join(@directory, "assets")
+      if File.directory?(assets)
+        Dir.foreach(assets) do |file_name|
+          path = File.join(assets, file_name)
+          next unless File.directory?(path)
+          next if (/^\./ =~ file_name)
+
+          case file_name
+          when "javascripts"
+            out << path
+          # TODO when "css"
+          end
+        end
+      end
+
       out
     end
   end
