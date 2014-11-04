@@ -67,7 +67,7 @@ module RailsStats
       end
 
       # something else
-      return "Test"
+      return "Other Tests"
     end
   end
 

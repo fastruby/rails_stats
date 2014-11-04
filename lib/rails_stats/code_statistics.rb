@@ -41,6 +41,8 @@ module RailsStats
           end
         end
 
+        # TODO: maybe gem names?
+
         concepts.keys
       end
 
@@ -48,6 +50,7 @@ module RailsStats
         out = []
         out += app_projects
         out += calculate_root_projects
+        out += calculate_gem_projects
         out += calculate_spec_projects
         out += calculate_test_projects
         out += calculate_cucumber_projects
@@ -62,6 +65,13 @@ module RailsStats
         apps = Util.calculate_projects(@root_directory, "**", "app", RAILS_APP_FOLDERS)
         apps.collect do |root_path|
           AppStatistics.new(root_path)
+        end
+      end
+
+      def calculate_gem_projects
+        gems = Util.calculate_projects(@root_directory, "**", "*.gemspec")
+        gems.collect do |root_path|
+          GemStatistics.new(root_path)
         end
       end
 
