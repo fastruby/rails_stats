@@ -15,6 +15,3 @@ require 'rails_stats/cucumber_statistics'
 require 'rails_stats/root_statistics'
 require 'rails_stats/gem_statistics'
 require 'rails_stats/code_statistics'
-
-require "rails_stats/rake"
-RailsStats.extend RailsStats::Rake

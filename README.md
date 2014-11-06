@@ -3,9 +3,9 @@
 See stuff about a Rails app.
 
 ```bash
-$ bundle exec thor stats:calculate ~/path/to/app/
+$ bundle exec rake:stats[~/path/to/app/]
 
-Directory: ~/path/to/app/
+Directory: /users/me/path/to/app/
 
 +----------------------+-------+-------+---------+---------+-----+-------+
 | Name                 | Lines |   LOC | Classes | Methods | M/C | LOC/M |
@@ -48,4 +48,3 @@ Directory: ~/path/to/app/
 * Output other metrics like number of tables and columns
 * Test unit support
 * Different output formatters
-* Switch to Rake?
