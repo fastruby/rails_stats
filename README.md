@@ -3,7 +3,7 @@
 See stuff about a Rails app.
 
 ```bash
-$ bundle exec rake:stats[~/path/to/app/]
+$ bundle exec rake:stats[/users/me/path/to/app/]
 
 Directory: /users/me/path/to/app/
 
