@@ -3,9 +3,9 @@
 See stuff about a Rails app.
 
 ```bash
-$ bundle exec rake:stats[/users/me/path/to/app/]
+$ bundle exec rake:stats[/path/to/app/]
 
-Directory: /users/me/path/to/app/
+Directory: /path/to/app/
 
 +----------------------+-------+-------+---------+---------+-----+-------+
 | Name                 | Lines |   LOC | Classes | Methods | M/C | LOC/M |
@@ -37,7 +37,7 @@ Directory: /users/me/path/to/app/
 * Library files
 * Gems that you've embedded in the project
 * Engines and their code
-* RSpec and Cucumber Tests
+* RSpec/Unit/Cucumber Tests
 
 ### TODO
 
@@ -46,5 +46,4 @@ Directory: /users/me/path/to/app/
 * Support JS for projects that have it in public (but not compiled)
 * Add CSS but don't count towards ratios
 * Output other metrics like number of tables and columns
-* Test unit support
 * Different output formatters

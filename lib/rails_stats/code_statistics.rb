@@ -83,7 +83,10 @@ module RailsStats
       end
 
       def calculate_test_projects
-        [] # TODO: test unit
+        specs = Util.calculate_projects(@root_directory, "**", "test", "test_helper.rb")
+        specs.collect do |root_path|
+          TestStatistics.new(root_path, @key_concepts)
+        end
       end
 
       def calculate_root_projects
