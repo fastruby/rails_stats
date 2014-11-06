@@ -69,7 +69,7 @@ module RailsStats
       end
 
       def calculate_gem_projects
-        gems = Util.calculate_projects(@root_directory, "**", "*.gemspec")
+        gems = Util.calculate_projects(@root_directory, "*", "**", "*.gemspec")
         gems.collect do |root_path|
           GemStatistics.new(root_path)
         end

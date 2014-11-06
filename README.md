@@ -30,11 +30,22 @@ Directory: ~/path/to/app/
 
 ```
 
+### Things it knows about
+
+* Any concepts you've added within an `app` directory
+* Configuration files
+* Library files
+* Gems that you've embedded in the project
+* Engines and their code
+* RSpec and Cucumber Tests
+
 ### TODO
 
-* option to print out by app directory (stats per engine)
+* Option to print out by app directory (stats per engine)
 * Add views (jbuilder, erb, haml) but don't count towards ratios
-* Support JS for projects that have it in public
-* Add css but don't count towards ratios
-* output other metrics like number of tables and columns
-* test unit support
+* Support JS for projects that have it in public (but not compiled)
+* Add CSS but don't count towards ratios
+* Output other metrics like number of tables and columns
+* Test unit support
+* Different output formatters
+* Switch to Rake?
