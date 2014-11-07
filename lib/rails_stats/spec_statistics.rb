@@ -11,7 +11,9 @@ module RailsStats
                     'integrations',
                     'integration',
                     'mailers',
-                    'lib']
+                    'lib',
+                    'acceptance',
+                    'factories']
 
     def initialize(directory, key_concepts)
       @test = true

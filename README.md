@@ -30,6 +30,7 @@ Directory: /path/to/app/
 
 ```
 
+
 ### Things it knows about
 
 * Any concepts you've added within an `app` directory
@@ -38,6 +39,201 @@ Directory: /path/to/app/
 * Gems that you've embedded in the project
 * Engines and their code
 * RSpec/Unit/Cucumber Tests
+
+### Example output
+
+Here are some open source Rails projects an their output.
+
+```bash
+$ bundle exec rake stats[/users/brian/examples/diaspora/]
+
+Directory: /users/brian/examples/diaspora
+
++----------------------+-------+-------+---------+---------+-----+-------+
+| Name                 | Lines |   LOC | Classes | Methods | M/C | LOC/M |
++----------------------+-------+-------+---------+---------+-----+-------+
+| Collections          |   259 |   198 |       0 |      56 |   0 |     1 |
+| Helpers              |  1863 |  1478 |       0 |     218 |   0 |     4 |
+| Models               |  4694 |  3517 |      55 |     580 |  10 |     4 |
+| Pages                |   201 |   158 |       0 |      21 |   0 |     5 |
+| Controllers          |  2797 |  2168 |      40 |     208 |   5 |     8 |
+| Mailers              |   313 |   263 |      13 |      32 |   2 |     6 |
+| Presenters           |   516 |   425 |      18 |      71 |   3 |     3 |
+| Uploaders            |    84 |    63 |       2 |       9 |   4 |     5 |
+| Workers              |   600 |   399 |      32 |      33 |   1 |    10 |
+| Javascripts          |  7550 |  4941 |       0 |     741 |   0 |     4 |
+| Libraries            |  7031 |  4890 |      69 |     701 |  10 |     4 |
+| Configuration        |  2556 |   833 |       5 |      10 |   2 |    81 |
+| Controller Tests     |  4628 |  3775 |       0 |       2 |   0 |  1885 |
+| Spec Support         |  1141 |   900 |       6 |      56 |   9 |    14 |
+| Helper Tests         |   771 |   615 |       0 |       6 |   0 |   100 |
+| Integration Tests    |   891 |   647 |       0 |      14 |   0 |    44 |
+| Lib Tests            |  4076 |  3259 |       2 |       4 |   2 |   812 |
+| Other Tests          |   120 |   101 |       0 |       0 |   0 |     0 |
+| Mailer Tests         |   412 |   328 |       0 |       0 |   0 |     0 |
+| Model Tests          |  6120 |  4964 |       0 |       1 |   0 |  4962 |
+| Presenter Tests      |   353 |   303 |       0 |       0 |   0 |     0 |
+| Worker Tests         |   821 |   648 |       0 |       0 |   0 |     0 |
+| Cucumber Features    |  2157 |  1863 |      47 |     155 |   3 |    10 |
++----------------------+-------+-------+---------+---------+-----+-------+
+| Total                | 49954 | 36736 |     289 |    2918 |  10 |    10 |
++----------------------+-------+-------+---------+---------+-----+-------+
+  Code LOC: 19333     Test LOC: 17403     Code to Test Ratio: 1:0.9
+
+
+$ bundle exec rake stats[/users/brian/examples/discourse]
+
+Directory: /users/brian/examples/discourse
+
++----------------------+-------+-------+---------+---------+-----+-------+
+| Name                 | Lines |   LOC | Classes | Methods | M/C | LOC/M |
++----------------------+-------+-------+---------+---------+-----+-------+
+| Controllers          |  5005 |  3812 |      56 |     416 |   7 |     7 |
+| Helpers              |   286 |   218 |       0 |      32 |   0 |     4 |
+| Jobs                 |  1830 |  1343 |      53 |     114 |   2 |     9 |
+| Mailers              |   438 |   340 |       7 |      24 |   3 |    12 |
+| Models               | 12378 |  8393 |     123 |     983 |   7 |     6 |
+| Serializers          |  2809 |  2223 |      73 |     374 |   5 |     3 |
+| Services             |  1353 |  1060 |      20 |     106 |   5 |     8 |
+| Javascripts          | 21722 | 13649 |       0 |    1844 |   0 |     5 |
+| Libraries            | 35298 | 27521 |     189 |    2565 |  13 |     8 |
+| Configuration        |  1758 |  1179 |       6 |      12 |   2 |    96 |
+| Other Tests          | 12998 |  9830 |      20 |      41 |   2 |   237 |
+| Controller Tests     |  7673 |  5911 |       0 |       4 |   0 |  1475 |
+| Spec Support         |   707 |   560 |       1 |      16 |  16 |    33 |
+| Helper Tests         |    88 |    71 |       0 |       0 |   0 |     0 |
+| Integration Tests    |   307 |   235 |       0 |       1 |   0 |   233 |
+| Job Tests            |  1343 |  1017 |       3 |       9 |   3 |   111 |
+| Mailer Tests         |   421 |   302 |       0 |       1 |   0 |   300 |
+| Model Tests          | 11236 |  8599 |       2 |      49 |  24 |   173 |
+| Serializer Tests     |   297 |   236 |       0 |       2 |   0 |   116 |
+| Service Tests        |  1767 |  1406 |       0 |       2 |   0 |   701 |
++----------------------+-------+-------+---------+---------+-----+-------+
+| Total                | 119714| 87905 |     553 |    6595 |  11 |    11 |
++----------------------+-------+-------+---------+---------+-----+-------+
+  Code LOC: 59738     Test LOC: 28167     Code to Test Ratio: 1:0.5
+
+
+$ bundle exec rake stats[/users/brian/examples/gitlabhq]
+
+Directory: /users/brian/examples/gitlabhq
+
++----------------------+-------+-------+---------+---------+-----+-------+
+| Name                 | Lines |   LOC | Classes | Methods | M/C | LOC/M |
++----------------------+-------+-------+---------+---------+-----+-------+
+| Controllers          |  3690 |  2890 |      66 |     384 |   5 |     5 |
+| Finders              |   428 |   267 |       8 |      27 |   3 |     7 |
+| Helpers              |  2280 |  1761 |       0 |     222 |   0 |     5 |
+| Mailers              |   382 |   275 |       1 |      29 |  29 |     7 |
+| Models               |  6922 |  4680 |      58 |     714 |  12 |     4 |
+| Services             |  2021 |  1502 |      51 |     149 |   2 |     8 |
+| Uploaders            |    81 |    62 |       2 |      14 |   7 |     2 |
+| Workers              |   128 |    99 |       6 |       8 |   1 |    10 |
+| Javascripts          |  3843 |  2936 |       1 |     534 | 534 |     3 |
+| Libraries            |  7246 |  4785 |     120 |     438 |   3 |     8 |
+| Configuration        |  1421 |   782 |       4 |      11 |   2 |    69 |
+| Controller Tests     |   428 |   334 |       0 |       0 |   0 |     0 |
+| Spec Support         |  1119 |   715 |       2 |      27 |  13 |    24 |
+| Other Tests          |    67 |    55 |       0 |       0 |   0 |     0 |
+| Feature Tests        |  2209 |  1765 |       0 |       8 |   0 |   218 |
+| Finder Tests         |   281 |   230 |       0 |       0 |   0 |     0 |
+| Helper Tests         |  1608 |  1255 |       0 |       5 |   0 |   249 |
+| Lib Tests            |  1459 |  1180 |       1 |      11 |  11 |   105 |
+| Mailer Tests         |   630 |   478 |       0 |       0 |   0 |     0 |
+| Model Tests          |  3856 |  2669 |       0 |      10 |   0 |   264 |
+| Request Tests        |  4229 |  3600 |       0 |      10 |   0 |   358 |
+| Routing Tests        |   849 |   520 |       0 |       0 |   0 |     0 |
+| Service Tests        |  1611 |  1307 |       0 |      34 |   0 |    36 |
+| Worker Tests         |    45 |    35 |       0 |       2 |   0 |    15 |
+| Cucumber Features    |  6749 |  5734 |     141 |     947 |   6 |     4 |
+| Cucumber Support     |  6235 |  4980 |      65 |      71 |   1 |    68 |
++----------------------+-------+-------+---------+---------+-----+-------+
+| Total                | 59817 | 44896 |     526 |    3655 |   6 |    10 |
++----------------------+-------+-------+---------+---------+-----+-------+
+  Code LOC: 20039     Test LOC: 24857     Code to Test Ratio: 1:1.2
+
+
+$ bundle exec rake stats[/users/brian/examples/redmine/]
+
+Directory: /users/brian/examples/redmine
+
++----------------------+-------+-------+---------+---------+-----+-------+
+| Name                 | Lines |   LOC | Classes | Methods | M/C | LOC/M |
++----------------------+-------+-------+---------+---------+-----+-------+
+| Controllers          |  6738 |  5005 |      51 |     416 |   8 |    10 |
+| Helpers              |  4445 |  3014 |       2 |     281 | 140 |     8 |
+| Models               | 13221 |  9369 |      86 |    1026 |  11 |     7 |
+| Libraries            | 19041 | 13499 |     137 |    1147 |   8 |     9 |
+| Configuration        |   779 |   550 |      14 |      18 |   1 |    28 |
+| Integration Tests    |  8286 |  6032 |      92 |     202 |   2 |    27 |
+| Other Tests          |   669 |   521 |       3 |      53 |  17 |     7 |
+| Test Support         |  1102 |   791 |       8 |      70 |   8 |     9 |
+| Functional Tests     | 18448 | 14784 |      61 |    1372 |  22 |     8 |
+| Unit Tests           | 23680 | 18217 |     117 |    1783 |  15 |     8 |
+| Helper Tests         |  3321 |  2567 |      16 |     171 |  10 |    13 |
++----------------------+-------+-------+---------+---------+-----+-------+
+| Total                | 99730 | 74349 |     587 |    6539 |  11 |     9 |
++----------------------+-------+-------+---------+---------+-----+-------+
+  Code LOC: 31437     Test LOC: 42912     Code to Test Ratio: 1:1.4
+
+
+$ bundle exec rake stats[/users/brian/examples/refinerycms]
+
+Directory: /users/brian/examples/refinerycms
+
++----------------------+-------+-------+---------+---------+-----+-------+
+| Name                 | Lines |   LOC | Classes | Methods | M/C | LOC/M |
++----------------------+-------+-------+---------+---------+-----+-------+
+| Controllers          |   950 |   748 |      17 |      83 |   4 |     7 |
+| Helpers              |   399 |   308 |       0 |      28 |   0 |     9 |
+| Mailers              |    22 |    18 |       1 |       2 |   2 |     7 |
+| Models               |   846 |   570 |      14 |      86 |   6 |     4 |
+| Presenters           |   365 |   271 |       8 |      44 |   5 |     4 |
+| Javascripts          |   717 |   531 |       0 |      52 |   0 |     8 |
+| Libraries            |     4 |     4 |       0 |       0 |   0 |     0 |
+| Gems                 |  4166 |  2997 |      44 |     372 |   8 |     6 |
+| Controller Tests     |   207 |   170 |       1 |       1 |   1 |   168 |
+| Spec Support         |   309 |   243 |       2 |       6 |   3 |    38 |
+| Feature Tests        |  1907 |  1484 |       0 |       4 |   0 |   369 |
+| Lib Tests            |  1952 |  1687 |       6 |       4 |   0 |   419 |
+| Model Tests          |  1323 |  1072 |       0 |       5 |   0 |   212 |
+| Helper Tests         |   324 |   264 |       0 |       1 |   0 |   262 |
+| Presenter Tests      |   355 |   299 |       0 |       0 |   0 |     0 |
++----------------------+-------+-------+---------+---------+-----+-------+
+| Total                | 13846 | 10666 |      93 |     688 |   7 |    13 |
++----------------------+-------+-------+---------+---------+-----+-------+
+  Code LOC: 5447     Test LOC: 5219     Code to Test Ratio: 1:1.0
+
+
+$ bundle exec rake stats[/users/brian/examples/spree]
+
+Directory: /users/brian/examples/spree
+
++----------------------+-------+-------+---------+---------+-----+-------+
+| Name                 | Lines |   LOC | Classes | Methods | M/C | LOC/M |
++----------------------+-------+-------+---------+---------+-----+-------+
+| Controllers          |  4653 |  3800 |      86 |     492 |   5 |     5 |
+| Helpers              |  1142 |   949 |       0 |      90 |   0 |     8 |
+| Models               |  9893 |  7308 |     167 |     973 |   5 |     5 |
+| Javascripts          |  2770 |  2100 |       9 |     416 |  46 |     3 |
+| Mailers              |    63 |    58 |       5 |       8 |   1 |     5 |
+| Libraries            |    15 |    14 |       0 |       0 |   0 |     0 |
+| Gems                 |  4690 |  3641 |      35 |     254 |   7 |    12 |
+| Controller Tests     |  7344 |  6000 |       6 |      19 |   3 |   313 |
+| Model Tests          | 16747 | 13452 |      20 |      27 |   1 |   496 |
+| Request Tests        |    32 |    24 |       0 |       0 |   0 |     0 |
+| Spec Support         |   577 |   427 |       3 |       9 |   3 |    45 |
+| Feature Tests        |  6079 |  4809 |       0 |      17 |   0 |   280 |
+| Helper Tests         |   602 |   470 |       2 |       1 |   0 |   468 |
+| Lib Tests            |  1455 |  1216 |       8 |      11 |   1 |   108 |
+| Mailer Tests         |   252 |   208 |       0 |       0 |   0 |     0 |
+| Other Tests          |    33 |    27 |       0 |       0 |   0 |     0 |
++----------------------+-------+-------+---------+---------+-----+-------+
+| Total                | 56347 | 44503 |     341 |    2317 |   6 |    17 |
++----------------------+-------+-------+---------+---------+-----+-------+
+  Code LOC: 17870     Test LOC: 26633     Code to Test Ratio: 1:1.5
+  
+```
 
 ### TODO
 

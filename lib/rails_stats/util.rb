@@ -22,6 +22,20 @@ module RailsStats
       out
     end
 
+    def calculate_shared_projects(shared, *args)
+      projects = {}
+      calculate_projects(*args).each do |path|
+        if path =~ /(^.*\/#{shared}\/).*/
+          projects[$1] = true
+        end
+      end
+      
+      out = projects.keys
+
+      # TODO: make sure none are children of other ones in there
+      out
+    end
+
     def calculate_file_statistics(file, type = :code, &block)
       stats = CodeStatisticsCalculator.new
 

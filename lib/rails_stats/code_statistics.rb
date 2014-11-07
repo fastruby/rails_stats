@@ -76,15 +76,15 @@ module RailsStats
       end
 
       def calculate_spec_projects
-        specs = Util.calculate_projects(@root_directory, "**", "spec", "spec_helper.rb")
+        specs = Util.calculate_shared_projects("spec", @root_directory, "**", "spec", "**", "*_spec.rb")
         specs.collect do |root_path|
           SpecStatistics.new(root_path, @key_concepts)
         end
       end
 
       def calculate_test_projects
-        specs = Util.calculate_projects(@root_directory, "**", "test", "test_helper.rb")
-        specs.collect do |root_path|
+        tests = Util.calculate_shared_projects("test", @root_directory, "**", "test", "**", "*_test.rb")
+        tests.collect do |root_path|
           TestStatistics.new(root_path, @key_concepts)
         end
       end
