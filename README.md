@@ -249,3 +249,4 @@ Directory: /users/brian/examples/spree
 * Add CSS but don't count towards ratios
 * Output other metrics like number of tables and columns
 * Different output formatters
+* replace current rake stats if included in a Rails project
