@@ -3,7 +3,7 @@
 See stuff about a Rails app.
 
 There were a few things missing to the included `rake stats`
-RailsStats mainly adds the ability to be run from outside the project in question. THis can be helpful if the app you are interested in can not be booted for some reason.
+RailsStats mainly adds the ability to be run from outside the project in question. This can be helpful if the app you are interested in can not be booted for some reason.
 
 ### Run it
 
