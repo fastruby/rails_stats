@@ -8,7 +8,7 @@ RailsStats mainly adds the ability to be run from outside the project in questio
 ### Run it
 
 ```bash
-$ bundle exec rake:stats[/path/to/app/]
+$ bundle exec rake stats[/path/to/app/]
 
 Directory: /path/to/app/
 
