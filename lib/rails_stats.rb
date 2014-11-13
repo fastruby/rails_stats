@@ -4,8 +4,6 @@ module RailsStats
 
 end
 
-require 'debugger'
-
 require 'rails_stats/inflector'
 require 'rails_stats/code_statistics_calculator'
 require 'rails_stats/util'
