@@ -8,6 +8,7 @@ RailsStats mainly adds the ability to be run from outside the project in questio
 ### Run it
 
 ```bash
+
 $ bundle exec rake stats[/path/to/app/]
 
 Directory: /path/to/app/
@@ -35,14 +36,27 @@ Directory: /path/to/app/
 
 ```
 
+### Within your Rails project
+
+You can also include it within your Rails application to _replace_ the default `rake stats` implementation.
+
+Just add rails_stats to your Gemfile.
+Depending on your setup, you might need to `require rails_stats` in your Rakefile.
+
+Then you'll be able to just run:
+
+```bash
+$ bundle exec rake stats
+```
+
 ### Things it knows about
 
-RailsStats also adds more coverage than the default.
+RailsStats adds more coverage than the default.
 
 * Any concepts you've added within an `app` directory
 * Configuration files
 * Library files
-* Gems that you've embedded in the project
+* Gems that you've created and embedded in the project
 * Engines and their code
 * RSpec/Unit/Cucumber Tests
 
@@ -249,4 +263,3 @@ Directory: /users/brian/examples/spree
 * Add CSS but don't count towards ratios
 * Output other metrics like number of tables and columns
 * Different output formatters
-* replace current rake stats if included in a Rails project
