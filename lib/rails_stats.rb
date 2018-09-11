@@ -4,5 +4,6 @@ module RailsStats
 
 end
 
+require 'rake'
 require 'rails_stats/tasks'
 
