@@ -5,7 +5,7 @@ See stuff about a Rails app.
 There were a few things missing to the included `rake stats`
 RailsStats mainly adds the ability to be run from outside the project in question. This can be helpful if the app you are interested in can not be booted for some reason.
 
-### Run it
+### Run it outside Rails project
 
 ```bash
 
@@ -33,7 +33,12 @@ Directory: /path/to/app/
 | Total                | 21805 | 16980 |     218 |    1483 |   6 |     9 |
 +----------------------+-------+-------+---------+---------+-----+-------+
   Code LOC: 10142     Test LOC: 6838     Code to Test Ratio: 1:0.7
+```
 
+### Run it on many Rails engines
+
+```bash
+$ for dir in /path/to/many/engines/*/; do bundle exec rake stats[$dir]; done
 ```
 
 ### Within your Rails project
@@ -62,7 +67,7 @@ RailsStats adds more coverage than the default.
 
 ### Example output
 
-Here are some open source Rails projects an their output.
+Here are some open source Rails projects and their output.
 
 ```bash
 $ bundle exec rake stats[/users/brian/examples/diaspora/]
