@@ -3,6 +3,7 @@
 See stuff about a Rails app.
 
 There were a few things missing to the included `rake stats`
+
 RailsStats mainly adds the ability to be run from outside the project in question. This can be helpful if the app you are interested in can not be booted for some reason.
 
 ### Run it outside Rails project
@@ -257,7 +258,23 @@ Directory: /users/brian/examples/spree
 | Total                | 56347 | 44503 |     341 |    2317 |   6 |    17 |
 +----------------------+-------+-------+---------+---------+-----+-------+
   Code LOC: 17870     Test LOC: 26633     Code to Test Ratio: 1:1.5
-  
+
+```
+
+### Testing
+
+In order to run the tests for this gem:
+
+```bash
+bundle exec rake
+
+# Running:
+
+.
+
+Fabulous run in 0.013349s, 74.9120 runs/s, 74.9120 assertions/s.
+
+1 runs, 1 assertions, 0 failures, 0 errors, 0 skips
 ```
 
 ### TODO
