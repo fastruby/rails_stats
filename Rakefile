@@ -2,6 +2,7 @@
 
 require "bundler/gem_tasks"
 require "rake/testtask"
+require "rails_stats"
 
 Rake::TestTask.new do |task|
   task.libs.push "lib"
