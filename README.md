@@ -8,9 +8,18 @@ RailsStats mainly adds the ability to be run from outside the project in questio
 
 ### Run it outside Rails project
 
-```bash
+You will need a `Rakefile` in the directory where you call `rake` and you will
+need to require `rails_stats`:
 
-$ bundle exec rake stats[/path/to/app/]
+```ruby
+# Rakefile
+require "rails_stats"
+```
+
+Then you can call it:
+
+```bash
+$ rake stats\[/path/to/app/\]
 
 Directory: /path/to/app/
 
