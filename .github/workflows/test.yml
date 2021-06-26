@@ -8,10 +8,9 @@ on:
   pull_request:
     branches:
     - master
-
+env:
+  COVERAGE: true
 jobs:
-  env:
-    COVERAGE: true
   test-ruby-2-4-x:
     runs-on: ubuntu-latest
 
