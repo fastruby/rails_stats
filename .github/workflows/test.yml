@@ -10,6 +10,7 @@ on:
     - master
 env:
   COVERAGE: true
+  CODECOV_TOKEN: 3cb5cae8-a986-4734-b7dd-61e9ca84e11b
 jobs:
   test-ruby-2-4-x:
     runs-on: ubuntu-latest
