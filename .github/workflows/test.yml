@@ -9,8 +9,8 @@ on:
     branches:
     - main
 env:
-  COVERAGE: true
-  CODECOV_TOKEN: d7028c0e-97c5-485f-85e5-f63daabeef63
+  # COVERAGE: true
+  # CODECOV_TOKEN: d7028c0e-97c5-485f-85e5-f63daabeef63
 jobs:
   test-ruby-2-4-x:
     runs-on: ubuntu-latest
