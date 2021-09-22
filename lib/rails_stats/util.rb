@@ -29,7 +29,7 @@ module RailsStats
           projects[$1] = true
         end
       end
-      
+
       out = projects.keys
 
       # TODO: make sure none are children of other ones in there
@@ -56,14 +56,14 @@ module RailsStats
 
       directories.each do |dir_path|
         next unless File.directory?(dir_path)
-        
+
         key = nil
         if block_given?
           key = yield(dir_path)
         end
 
         key = path_to_name(dir_path, is_test) if !key || key.length == 0
-        
+
         out[key] ||= CodeStatisticsCalculator.new(is_test)
         out[key].add(calculate_directory_statistics(dir_path))
       end

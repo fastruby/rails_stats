@@ -37,7 +37,7 @@ module RailsStats
       out = {}
       categorize_files.each do |key, list|
         out[key] = Util.calculate_file_statistics(list)
-      end 
+      end
       out
     end
 

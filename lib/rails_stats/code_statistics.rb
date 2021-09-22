@@ -20,7 +20,8 @@ module RailsStats
 
     def to_s
       print_header
-      @statistics.each { |key, stats| print_line(key, stats) }
+      sorted_keys = @statistics.keys.sort
+      sorted_keys.each { |key| print_line(key, @statistics[key]) }
       print_splitter
 
       print_line("Code", @code_total)
