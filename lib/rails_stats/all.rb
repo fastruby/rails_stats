@@ -1,3 +1,7 @@
+require 'rails_stats/stats_calculator'
+require 'rails_stats/stats_formatter'
+require 'rails_stats/json_formatter'
+require 'rails_stats/console_formatter'
 require 'rails_stats/inflector'
 require 'rails_stats/code_statistics_calculator'
 require 'rails_stats/util'
