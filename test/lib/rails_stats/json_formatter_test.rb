@@ -88,7 +88,12 @@ describe RailsStats::JSONFormatter do
       calculator = RailsStats::StatsCalculator.new(root_directory)
       formatter  = RailsStats::JSONFormatter.new(calculator)
 
-      assert_equal JSON.parse(JSON_STRING), formatter.result
+      sorted_expectation = JSON.parse(JSON_STRING).sort {|x, y| x["name"] <=> y["name"] }
+      sorted_result      = formatter.result.sort {|x, y| x["name"] <=> y["name"] }
+
+      sorted_expectation.each_with_index do |x, i|
+        assert_equal x, sorted_result[i]
+      end
     end
   end
 end
