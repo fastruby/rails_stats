@@ -270,6 +270,18 @@ Directory: /users/brian/examples/spree
 
 ```
 
+#### JSON Format
+
+If you want to export the details using JSON, you can use this command:
+
+```
+$ rake stats\[test/dummy,json\]
+
+Directory: /Users/etagwerker/Projects/fastruby/rails_stats/test/dummy
+
+[{"name":"Mailers","lines":"4","loc":"4","classes":"1","methods":"0","m_over_c":"0","loc_over_m":"0"},{"name":"Models","lines":"3","loc":"3","classes":"1","methods":"0","m_over_c":"0","loc_over_m":"0"},{"name":"Javascripts","lines":"27","loc":"7","classes":"0","methods":"0","m_over_c":"0","loc_over_m":"0"},{"name":"Jobs","lines":"7","loc":"2","classes":"1","methods":"0","m_over_c":"0","loc_over_m":"0"},{"name":"Controllers","lines":"7","loc":"6","classes":"1","methods":"1","m_over_c":"1","loc_over_m":"4"},{"name":"Helpers","lines":"3","loc":"3","classes":"0","methods":"0","m_over_c":"0","loc_over_m":"0"},{"name":"Channels","lines":"8","loc":"8","classes":"2","methods":"0","m_over_c":"0","loc_over_m":"0"},{"name":"Configuration","lines":"417","loc":"111","classes":"1","methods":"0","m_over_c":"0","loc_over_m":"0"},{"name":"Total","lines":"476","loc":"144","classes":"7","methods":"1","m_over_c":"0","loc_over_m":"142","code_to_test_ratio":"0.0","total":true}]
+```
+
 ### Testing
 
 In order to run the tests for this gem:
