@@ -3,10 +3,11 @@ module RailsStats
     attr_reader :statistics, :total, :test
 
     def initialize(directory)
+      @directories = []
       @test = false
-      @directory  = directory
-      @statistics = calculate_statistics
-      @total      = calculate_total
+      @directory   = directory
+      @statistics  = calculate_statistics
+      @total       = calculate_total
     end
 
     def key_concepts
@@ -28,15 +29,15 @@ module RailsStats
     end
 
     def directories
-      return @directories if @directories
-      out = []
+      return @directories if @directories.any?
+
       Dir.foreach(@directory) do |file_name|
         path = File.join(@directory, file_name)
         next unless File.directory?(path)
         next if (/^\./ =~ file_name)
         next if file_name == "assets" # doing separately
         next if file_name == "views"  # TODO
-        out << path
+        @directories << path
       end
 
       assets = File.join(@directory, "assets")
@@ -48,13 +49,13 @@ module RailsStats
 
           case file_name
           when "javascripts"
-            out << path
+            @directories << path
           # TODO when "css"
           end
         end
       end
 
-      out
+      @directories
     end
   end
 
