@@ -5,7 +5,20 @@ require "test_helper"
 describe RailsStats::CodeStatistics do
   describe "#to_s" do
     TABLE = <<~EOS
-+----------------------+---------+---------+---------+---------+-----+-------+
++-----------------------|------------|----------------+
+|                  Name | Total Deps | 1st Level Deps |
++-----------------------|------------|----------------+
+|     simplecov-console | 7          | 3              |
+|               codecov | 4          | 1              |
+|           rails_stats | 4          | 2              |
+|             simplecov | 3          | 3              |
+|       minitest-around | 1          | 1              |
+|              minitest | 0          | 0              |
+|               bundler | 0          | 0              |
+|                byebug | 0          | 0              |
+| minitest-spec-context | 0          | 0              |
++-----------------------|------------|----------------+
+                          \n      Declared Gems   9   \n         Total Gems   17  \n  Unpinned Versions   8   \n        Github Refs   0   \n                          \n+----------------------+---------+---------+---------+---------+-----+-------+
 | Name                 | Lines   |     LOC | Classes | Methods | M/C | LOC/M |
 +----------------------+---------+---------+---------+---------+-----+-------+
 | Channels             |       8 |       8 |       2 |       0 |   0 |     0 |
@@ -28,9 +41,11 @@ describe RailsStats::CodeStatistics do
     it "outputs useful stats for a Rails project" do
       root_directory = File.expand_path('../../../test/dummy', File.dirname(__FILE__))
 
-      assert_output(TABLE) do
+      out, err = capture_io do
         RailsStats::CodeStatistics.new(root_directory).to_s
       end
+
+      assert_equal TABLE, out
     end
   end
 end
