@@ -8,17 +8,17 @@ describe RailsStats::CodeStatistics do
 +-----------------------|------------|----------------+
 |                  Name | Total Deps | 1st Level Deps |
 +-----------------------|------------|----------------+
-|     simplecov-console | 7          | 3              |
-|               codecov | 4          | 1              |
+|     simplecov-console | 6          | 3              |
 |           rails_stats | 4          | 2              |
-|             simplecov | 3          | 3              |
+|               codecov | 3          | 1              |
+|             simplecov | 2          | 2              |
 |       minitest-around | 1          | 1              |
 |               bundler | 0          | 0              |
 |                byebug | 0          | 0              |
 |              minitest | 0          | 0              |
 | minitest-spec-context | 0          | 0              |
 +-----------------------|------------|----------------+
-                          \n      Declared Gems   9   \n         Total Gems   17  \n  Unpinned Versions   8   \n        Github Refs   0   \n                          \n+----------------------+---------+---------+---------+---------+-----+-------+
+                          \n      Declared Gems   9   \n         Total Gems   16  \n  Unpinned Versions   8   \n        Github Refs   0   \n                          \n+----------------------+---------+---------+---------+---------+-----+-------+
 | Name                 | Lines   |     LOC | Classes | Methods | M/C | LOC/M |
 +----------------------+---------+---------+---------+---------+-----+-------+
 | Channels             |       8 |       8 |       2 |       0 |   0 |     0 |
@@ -36,7 +36,7 @@ describe RailsStats::CodeStatistics do
 +----------------------+---------+---------+---------+---------+-----+-------+
   Code LOC: 144     Test LOC: 0     Code to Test Ratio: 1:0.0
 
-    EOS
+EOS
 
     it "outputs useful stats for a Rails project" do
       root_directory = File.expand_path('../../../test/dummy', File.dirname(__FILE__))
