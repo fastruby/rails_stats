@@ -27,14 +27,18 @@ describe RailsStats::CodeStatistics do
 | Helpers              |       3 |       3 |       0 |       0 |   0 |     0 |
 | Javascripts          |      27 |       7 |       0 |       0 |   0 |     0 |
 | Jobs                 |       7 |       2 |       1 |       0 |   0 |     0 |
+| Libraries            |       1 |       1 |       0 |       0 |   0 |     0 |
 | Mailers              |       4 |       4 |       1 |       0 |   0 |     0 |
+| Model Tests          |       5 |       4 |       2 |       0 |   0 |     0 |
 | Models               |       3 |       3 |       1 |       0 |   0 |     0 |
+| Spec Support         |       1 |       1 |       0 |       0 |   0 |     0 |
+| Test Support         |       1 |       1 |       0 |       0 |   0 |     0 |
 +----------------------+---------+---------+---------+---------+-----+-------+
-| Code                 |     476 |     144 |       7 |       1 |   0 |   142 |
-| Tests                |       0 |       0 |       0 |       0 |   0 |     0 |
-| Total                |     476 |     144 |       7 |       1 |   0 |   142 |
+| Code                 |     477 |     145 |       7 |       1 |   0 |   143 |
+| Tests                |       7 |       6 |       2 |       0 |   0 |     0 |
+| Total                |     484 |     151 |       9 |       1 |   0 |   149 |
 +----------------------+---------+---------+---------+---------+-----+-------+
-  Code LOC: 144     Test LOC: 0     Code to Test Ratio: 1:0.0
+  Code LOC: 145     Test LOC: 6     Code to Test Ratio: 1:0.0
 
     EOS
 
@@ -61,14 +65,18 @@ describe RailsStats::CodeStatistics do
 | Helpers              |       3 |       3 |       0 |       0 |   0 |     0 |
 | Javascripts          |      27 |       7 |       0 |       0 |   0 |     0 |
 | Jobs                 |       7 |       2 |       1 |       0 |   0 |     0 |
+| Libraries            |       1 |       1 |       0 |       0 |   0 |     0 |
 | Mailers              |       4 |       4 |       1 |       0 |   0 |     0 |
+| Model Tests          |       5 |       4 |       2 |       0 |   0 |     0 |
 | Models               |       3 |       3 |       1 |       0 |   0 |     0 |
+| Spec Support         |       1 |       1 |       0 |       0 |   0 |     0 |
+| Test Support         |       1 |       1 |       0 |       0 |   0 |     0 |
 +----------------------+---------+---------+---------+---------+-----+-------+
-| Code                 |     476 |     144 |       7 |       1 |   0 |   142 |
-| Tests                |       0 |       0 |       0 |       0 |   0 |     0 |
-| Total                |     476 |     144 |       7 |       1 |   0 |   142 |
+| Code                 |     477 |     145 |       7 |       1 |   0 |   143 |
+| Tests                |       7 |       6 |       2 |       0 |   0 |     0 |
+| Total                |     484 |     151 |       9 |       1 |   0 |   149 |
 +----------------------+---------+---------+---------+---------+-----+-------+
-  Code LOC: 144     Test LOC: 0     Code to Test Ratio: 1:0.0
+  Code LOC: 145     Test LOC: 6     Code to Test Ratio: 1:0.0
 
 EOS
 

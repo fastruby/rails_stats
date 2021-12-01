@@ -6,10 +6,26 @@ describe RailsStats::JSONFormatter do
   describe "#result" do
     JSON_STRING = <<~EOS
     [{
+      "name": "Libraries",
+      "lines": "1",
+      "loc": "1",
+      "classes": "0",
+      "methods": "0",
+      "m_over_c": "0",
+      "loc_over_m": "0"
+    }, {
       "name": "Mailers",
       "lines": "4",
       "loc": "4",
       "classes": "1",
+      "methods": "0",
+      "m_over_c": "0",
+      "loc_over_m": "0"
+    }, {
+      "name": "Model Tests",
+      "lines": "5",
+      "loc": "4",
+      "classes": "2",
       "methods": "0",
       "m_over_c": "0",
       "loc_over_m": "0"
@@ -70,13 +86,29 @@ describe RailsStats::JSONFormatter do
       "m_over_c": "0",
       "loc_over_m": "0"
     }, {
+      "name": "Spec Support",
+      "lines": "1",
+      "loc": "1",
+      "classes": "0",
+      "methods": "0",
+      "m_over_c": "0",
+      "loc_over_m": "0"
+    }, {
+      "name": "Test Support",
+      "lines": "1",
+      "loc": "1",
+      "classes": "0",
+      "methods": "0",
+      "m_over_c": "0",
+      "loc_over_m": "0"
+    }, {
       "name": "Total",
-      "lines": "476",
-      "loc": "144",
-      "classes": "7",
+      "lines": "484",
+      "loc": "151",
+      "classes": "9",
       "methods": "1",
       "m_over_c": "0",
-      "loc_over_m": "142",
+      "loc_over_m": "149",
       "code_to_test_ratio": "0.0",
       "total": true
     }]
