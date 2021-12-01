@@ -1,0 +1,2 @@
+class UserTest
+end
