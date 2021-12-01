@@ -1,4 +1,14 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
-# Specify your gem's dependencies in rails_stats.gemspec
 gemspec
+
+group :development, :test do
+  gem "bundler", ">= 1.6", "< 3.0"
+  gem "byebug"
+  gem "codecov"
+  gem "minitest"
+  gem "minitest-around"
+  gem "minitest-spec-context"
+  gem "simplecov"
+  gem "simplecov-console"
+end
