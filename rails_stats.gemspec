@@ -19,12 +19,5 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "rake"
-  spec.add_development_dependency "bundler", ">= 1.6", "< 3.0"
-  spec.add_development_dependency "byebug"
-  spec.add_development_dependency "codecov"
-  spec.add_development_dependency "minitest"
-  spec.add_development_dependency "minitest-around"
-  spec.add_development_dependency "minitest-spec-context"
-  spec.add_development_dependency "simplecov"
-  spec.add_development_dependency "simplecov-console"
+  spec.add_dependency "bundler-stats", ">= 2.1"
 end

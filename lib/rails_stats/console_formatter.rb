@@ -1,6 +1,10 @@
+require "bundler/stats/cli"
+
 module RailsStats
   class ConsoleFormatter < StatsFormatter
     def to_s
+      Bundler::Stats::CLI.start
+
       print_header
       sorted_keys = @statistics.keys.sort
       sorted_keys.each { |key| print_line(key, @statistics[key]) }
