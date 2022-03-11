@@ -1,0 +1,17 @@
+# main ([unreleased](https://github.com/fastruby/rails_stats/compare/v1.0.2...main))
+
+* [FEATURE: Add basic coverage to RailsStats::CodeStatistics#to_s](https://github.com/fastruby/rails_stats/pull/10)
+* [FEATURE: Enable simplecov and codecov](https://github.com/fastruby/rails_stats/pull/18)
+* [BUGFIX: Add methods for calculating M/C and LOC/M](https://github.com/fastruby/rails_stats/pull/19)
+* [FEATURE: Support JSON output](https://github.com/fastruby/rails_stats/pull/20)
+* [FEATURE: Add dependency on bundler-stats and improve output](https://github.com/fastruby/rails_stats/pull/21)
+
+
+# v1.0.2 / 2020-10-7 ([commits](https://github.com/fastruby/rails_stats/compare/v1.0.1...v1.0.2))
+
+* [CHORE: Relax bundler dependency to make it easier to get started contributing](https://github.com/fastruby/rails_stats/pull/9)
+
+# v1.0.1 / 2018-10-8
+
+* [FEATURE: add more aggregate stats](https://github.com/fastruby/rails_stats/pull/5)
+* [FEATURE: More detailed introspection of app](https://github.com/fastruby/rails_stats/pull/1)
