@@ -1,5 +1,9 @@
 # main ([unreleased](https://github.com/fastruby/rails_stats/compare/v1.0.2...main))
 
+*
+
+# v2.0.0 ([commits](https://github.com/fastruby/rails_stats/compare/v1.0.2...v2.0.0))
+
 * [FEATURE: Add basic coverage to RailsStats::CodeStatistics#to_s](https://github.com/fastruby/rails_stats/pull/10)
 * [FEATURE: Enable simplecov and codecov](https://github.com/fastruby/rails_stats/pull/18)
 * [BUGFIX: Add methods for calculating M/C and LOC/M](https://github.com/fastruby/rails_stats/pull/19)
