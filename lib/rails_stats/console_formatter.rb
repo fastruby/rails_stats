@@ -36,8 +36,6 @@ module RailsStats
         m_over_c   = (statistics.methods / statistics.classes) rescue m_over_c = 0
         loc_over_m = (statistics.code_lines / statistics.methods) - 2 rescue loc_over_m = 0
 
-        require 'byebug'; byebug if statistics.nil?
-
         puts "| #{name.ljust(20)} " \
             "| #{statistics.files_total.to_s.rjust(7)} " \
             "| #{statistics.lines.to_s.rjust(7)} " \

@@ -2,6 +2,10 @@
 
 *
 
+# v2.0.1 ([commits](https://github.com/fastruby/rails_stats/compare/v2.0.0...v2.0.1))
+
+* [BUGFIX: Remove conditional byebug](https://github.com/fastruby/rails_stats/pull/29)
+
 # v2.0.0 ([commits](https://github.com/fastruby/rails_stats/compare/v1.0.2...v2.0.0))
 
 * [FEATURE: Add basic coverage to RailsStats::CodeStatistics#to_s](https://github.com/fastruby/rails_stats/pull/10)
