@@ -2,14 +2,16 @@
 
 require "test_helper"
 
+Minitest::Test.make_my_diffs_pretty!
+
 describe RailsStats::CodeStatistics do
   describe "#to_s" do
-    TABLE = <<~EOS
+  TABLE = <<~EOS
 +-----------------------|------------|----------------+
 |                  Name | Total Deps | 1st Level Deps |
 +-----------------------|------------|----------------+
 |     simplecov-console | 7          | 3              |
-|               codecov | 4          | 1              |
+|               codecov | 5          | 2              |
 |           rails_stats | 4          | 2              |
 |             simplecov | 3          | 3              |
 |       minitest-around | 1          | 1              |
@@ -18,66 +20,33 @@ describe RailsStats::CodeStatistics do
 |              minitest | 0          | 0              |
 | minitest-spec-context | 0          | 0              |
 +-----------------------|------------|----------------+
-                          \n      Declared Gems   9   \n         Total Gems   17  \n  Unpinned Versions   8   \n        Github Refs   0   \n                          \n+----------------------+---------+---------+---------+---------+-----+-------+
-| Name                 | Lines   |     LOC | Classes | Methods | M/C | LOC/M |
-+----------------------+---------+---------+---------+---------+-----+-------+
-| Channels             |       8 |       8 |       2 |       0 |   0 |     0 |
-| Configuration        |     417 |     111 |       1 |       0 |   0 |     0 |
-| Controllers          |       7 |       6 |       1 |       1 |   1 |     4 |
-| Helpers              |       3 |       3 |       0 |       0 |   0 |     0 |
-| Javascripts          |      27 |       7 |       0 |       0 |   0 |     0 |
-| Jobs                 |       7 |       2 |       1 |       0 |   0 |     0 |
-| Libraries            |       1 |       1 |       0 |       0 |   0 |     0 |
-| Mailers              |       4 |       4 |       1 |       0 |   0 |     0 |
-| Model Tests          |       5 |       4 |       2 |       0 |   0 |     0 |
-| Models               |       3 |       3 |       1 |       0 |   0 |     0 |
-| Spec Support         |       1 |       1 |       0 |       0 |   0 |     0 |
-| Test Support         |       1 |       1 |       0 |       0 |   0 |     0 |
-+----------------------+---------+---------+---------+---------+-----+-------+
-| Code                 |     477 |     145 |       7 |       1 |   0 |   143 |
-| Tests                |       7 |       6 |       2 |       0 |   0 |     0 |
-| Total                |     484 |     151 |       9 |       1 |   0 |   149 |
-+----------------------+---------+---------+---------+---------+-----+-------+
-  Code LOC: 145     Test LOC: 6     Code to Test Ratio: 1:0.0
 
-    EOS
-
-    TABLE_RUBY_2_4 = <<~EOS
-+-----------------------|------------|----------------+
-|                  Name | Total Deps | 1st Level Deps |
-+-----------------------|------------|----------------+
-|     simplecov-console | 6          | 3              |
-|           rails_stats | 4          | 2              |
-|               codecov | 3          | 1              |
-|             simplecov | 2          | 2              |
-|       minitest-around | 1          | 1              |
-|               bundler | 0          | 0              |
-|                byebug | 0          | 0              |
-|              minitest | 0          | 0              |
-| minitest-spec-context | 0          | 0              |
-+-----------------------|------------|----------------+
-                          \n      Declared Gems   9   \n         Total Gems   16  \n  Unpinned Versions   8   \n        Github Refs   0   \n                          \n+----------------------+---------+---------+---------+---------+-----+-------+
-| Name                 | Lines   |     LOC | Classes | Methods | M/C | LOC/M |
-+----------------------+---------+---------+---------+---------+-----+-------+
-| Channels             |       8 |       8 |       2 |       0 |   0 |     0 |
-| Configuration        |     417 |     111 |       1 |       0 |   0 |     0 |
-| Controllers          |       7 |       6 |       1 |       1 |   1 |     4 |
-| Helpers              |       3 |       3 |       0 |       0 |   0 |     0 |
-| Javascripts          |      27 |       7 |       0 |       0 |   0 |     0 |
-| Jobs                 |       7 |       2 |       1 |       0 |   0 |     0 |
-| Libraries            |       1 |       1 |       0 |       0 |   0 |     0 |
-| Mailers              |       4 |       4 |       1 |       0 |   0 |     0 |
-| Model Tests          |       5 |       4 |       2 |       0 |   0 |     0 |
-| Models               |       3 |       3 |       1 |       0 |   0 |     0 |
-| Spec Support         |       1 |       1 |       0 |       0 |   0 |     0 |
-| Test Support         |       1 |       1 |       0 |       0 |   0 |     0 |
-+----------------------+---------+---------+---------+---------+-----+-------+
-| Code                 |     477 |     145 |       7 |       1 |   0 |   143 |
-| Tests                |       7 |       6 |       2 |       0 |   0 |     0 |
-| Total                |     484 |     151 |       9 |       1 |   0 |   149 |
-+----------------------+---------+---------+---------+---------+-----+-------+
-  Code LOC: 145     Test LOC: 6     Code to Test Ratio: 1:0.0
-
+      Declared Gems   9
+         Total Gems   18
+  Unpinned Versions   8
+        Github Refs   0
+  
++----------------------+---------+---------+---------+---------+---------+-----+-------+
+| Name                 | Files   | Lines   |     LOC | Classes | Methods | M/C | LOC/M |
++----------------------+---------+---------+---------+---------+---------+-----+-------+
+| Channels             |       2 |       8 |       8 |       2 |       0 |   0 |     0 |
+| Configuration        |      19 |     417 |     111 |       1 |       0 |   0 |     0 |
+| Controllers          |       1 |       7 |       6 |       1 |       1 |   1 |     4 |
+| Helpers              |       1 |       3 |       3 |       0 |       0 |   0 |     0 |
+| Javascripts          |       3 |      27 |       7 |       0 |       0 |   0 |     0 |
+| Jobs                 |       1 |       7 |       2 |       1 |       0 |   0 |     0 |
+| Libraries            |       1 |       1 |       1 |       0 |       0 |   0 |     0 |
+| Mailers              |       1 |       4 |       4 |       1 |       0 |   0 |     0 |
+| Model Tests          |       2 |       5 |       4 |       2 |       0 |   0 |     0 |
+| Models               |       1 |       3 |       3 |       1 |       0 |   0 |     0 |
+| Spec Support         |       1 |       1 |       1 |       0 |       0 |   0 |     0 |
+| Test Support         |       1 |       1 |       1 |       0 |       0 |   0 |     0 |
++----------------------+---------+---------+---------+---------+---------+-----+-------+
+| Code                 |      30 |     477 |     145 |       7 |       1 |   0 |   143 |
+| Tests                |       4 |       7 |       6 |       2 |       0 |   0 |     0 |
+| Total                |      34 |     484 |     151 |       9 |       1 |   0 |   149 |
++----------------------+---------+---------+---------+---------+---------+-----+-------+
+  Code LOC: 145     Test LOC: 6     Code to Test Ratio: 1:0.0  Files: 34
 EOS
 
     it "outputs useful stats for a Rails project" do
@@ -87,13 +56,7 @@ EOS
         RailsStats::CodeStatistics.new(root_directory).to_s
       end
 
-      expectation = if RUBY_VERSION < "2.5.0"
-        TABLE_RUBY_2_4
-      else
-        TABLE
-      end
-
-      assert_equal expectation, out
+      assert_equal TABLE, out
     end
   end
 end

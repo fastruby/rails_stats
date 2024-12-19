@@ -7,6 +7,7 @@ describe RailsStats::JSONFormatter do
     JSON_STRING = <<~EOS
     [{
       "name": "Libraries",
+      "files": "1",
       "lines": "1",
       "loc": "1",
       "classes": "0",
@@ -15,6 +16,7 @@ describe RailsStats::JSONFormatter do
       "loc_over_m": "0"
     }, {
       "name": "Mailers",
+      "files": "1",
       "lines": "4",
       "loc": "4",
       "classes": "1",
@@ -23,6 +25,7 @@ describe RailsStats::JSONFormatter do
       "loc_over_m": "0"
     }, {
       "name": "Model Tests",
+      "files": "2",
       "lines": "5",
       "loc": "4",
       "classes": "2",
@@ -31,6 +34,7 @@ describe RailsStats::JSONFormatter do
       "loc_over_m": "0"
     }, {
       "name": "Models",
+      "files": "1",
       "lines": "3",
       "loc": "3",
       "classes": "1",
@@ -39,6 +43,7 @@ describe RailsStats::JSONFormatter do
       "loc_over_m": "0"
     }, {
       "name": "Javascripts",
+      "files": "3",
       "lines": "27",
       "loc": "7",
       "classes": "0",
@@ -47,6 +52,7 @@ describe RailsStats::JSONFormatter do
       "loc_over_m": "0"
     }, {
       "name": "Jobs",
+      "files": "1",
       "lines": "7",
       "loc": "2",
       "classes": "1",
@@ -55,6 +61,7 @@ describe RailsStats::JSONFormatter do
       "loc_over_m": "0"
     }, {
       "name": "Controllers",
+      "files": "1",
       "lines": "7",
       "loc": "6",
       "classes": "1",
@@ -63,6 +70,7 @@ describe RailsStats::JSONFormatter do
       "loc_over_m": "4"
     }, {
       "name": "Helpers",
+      "files": "1",
       "lines": "3",
       "loc": "3",
       "classes": "0",
@@ -71,6 +79,7 @@ describe RailsStats::JSONFormatter do
       "loc_over_m": "0"
     }, {
       "name": "Channels",
+      "files": "2",
       "lines": "8",
       "loc": "8",
       "classes": "2",
@@ -79,6 +88,7 @@ describe RailsStats::JSONFormatter do
       "loc_over_m": "0"
     }, {
       "name": "Configuration",
+      "files": "19",
       "lines": "417",
       "loc": "111",
       "classes": "1",
@@ -87,6 +97,7 @@ describe RailsStats::JSONFormatter do
       "loc_over_m": "0"
     }, {
       "name": "Spec Support",
+      "files": "1",
       "lines": "1",
       "loc": "1",
       "classes": "0",
@@ -95,6 +106,7 @@ describe RailsStats::JSONFormatter do
       "loc_over_m": "0"
     }, {
       "name": "Test Support",
+      "files": "1",
       "lines": "1",
       "loc": "1",
       "classes": "0",
@@ -103,6 +115,7 @@ describe RailsStats::JSONFormatter do
       "loc_over_m": "0"
     }, {
       "name": "Total",
+      "files": "34",
       "lines": "484",
       "loc": "151",
       "classes": "9",
