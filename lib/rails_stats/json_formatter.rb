@@ -33,6 +33,7 @@ module RailsStats
 
         {
           "name" => name,
+          "files" => statistics.files_total.to_s,
           "lines" => statistics.lines.to_s,
           "loc" => statistics.code_lines.to_s,
           "classes" => statistics.classes.to_s,

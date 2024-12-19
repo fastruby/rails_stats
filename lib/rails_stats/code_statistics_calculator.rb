@@ -2,7 +2,7 @@
 
 module RailsStats
   class CodeStatisticsCalculator #:nodoc:
-    attr_reader :lines, :code_lines, :classes, :methods, :test
+    attr_reader :files_total, :lines, :code_lines, :classes, :methods, :test
 
     PATTERNS = {
       rb: {
@@ -33,6 +33,7 @@ module RailsStats
 
     def initialize(test=false)
       @test = test
+      @files_total = 0
       @lines = 0
       @code_lines = 0
       @classes = 0
@@ -40,6 +41,7 @@ module RailsStats
     end
 
     def add(code_statistics_calculator)
+      @files_total += code_statistics_calculator.files_total
       @lines += code_statistics_calculator.lines
       @code_lines += code_statistics_calculator.code_lines
       @classes += code_statistics_calculator.classes
@@ -47,6 +49,8 @@ module RailsStats
     end
 
     def add_by_file_path(file_path)
+      @files_total += 1
+
       File.open(file_path) do |f|
         self.add_by_io(f, file_type(file_path))
       end

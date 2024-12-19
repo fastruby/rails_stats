@@ -14,10 +14,10 @@ module RailsStats
       @statistics     = calculate_statistics
       @code_loc       = calculate_code
       @test_loc       = calculate_tests
-      @code_total, @tests_total, @grand_total = calculate_totals
+      @files_total, @code_total, @tests_total, @grand_total = calculate_totals
     end
 
-    attr_reader :code_loc, :code_total, :grand_total, :statistics, :test_loc, :tests_total
+    attr_reader :code_loc, :code_total, :files_total, :grand_total, :statistics, :test_loc, :tests_total
 
     private
 
@@ -103,6 +103,10 @@ module RailsStats
       end
 
       def calculate_totals
+        files_total = @statistics.sum do |k,value|
+          value.files_total
+        end
+
         code_total = @statistics.each_with_object(CodeStatisticsCalculator.new) do |pair, code_total|
           code_total.add(pair.last) unless pair.last.test
         end
@@ -115,7 +119,7 @@ module RailsStats
           total.add(pair.last)
         end
 
-        [code_total, tests_total, grand_total]
+        [files_total, code_total, tests_total, grand_total]
       end
 
       def calculate_code
