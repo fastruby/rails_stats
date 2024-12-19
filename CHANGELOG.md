@@ -5,7 +5,7 @@
 * [BUGFIX: Add methods for calculating M/C and LOC/M](https://github.com/fastruby/rails_stats/pull/19)
 * [FEATURE: Support JSON output](https://github.com/fastruby/rails_stats/pull/20)
 * [FEATURE: Add dependency on bundler-stats and improve output](https://github.com/fastruby/rails_stats/pull/21)
-
+* [FEATURE: Add files count to the console and JSON output](https://github.com/fastruby/rails_stats/pull/25)
 
 # v1.0.2 / 2020-10-7 ([commits](https://github.com/fastruby/rails_stats/compare/v1.0.1...v1.0.2))
 

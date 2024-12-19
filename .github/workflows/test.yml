@@ -4,103 +4,39 @@ name: Test
 on:
   push:
     branches:
-    - main
+      - main
   pull_request:
     branches:
-    - main
+      - main
 jobs:
-  test-ruby-2-4-x:
+  test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby-version: ["2.5", "2.6", "2.7", "3.0"]
 
     steps:
       - uses: actions/checkout@v1
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.4
+          ruby-version: ${{ matrix.ruby-version }}
           bundler-cache: true
+      - name: Uninstall existing Bundler
+        run: |
+          gem uninstall bundler -a -x || true
+      - name: Install Bundler
+        run: |
+          if [[ "${{ matrix.ruby-version }}" == "2.6" || "${{ matrix.ruby-version }}" == "2.7" ]]; then
+            gem install bundler -v "~> 2.4.0"
+          else
+            gem install bundler
+          fi
       - name: Build and run tests
         env:
           COVERAGE: true
           TERM: xterm
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         run: |
-          gem install bundler
-          bundle install --jobs 4 --retry 3
-          bundle exec rake test
-  test-ruby-2-5-x:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v1
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.5
-          bundler-cache: true
-      - name: Build and run tests
-        env:
-          COVERAGE: true
-          TERM: xterm
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-        run: |
-          gem install bundler
-          bundle install --jobs 4 --retry 3
-          bundle exec rake test
-  test-ruby-2-6-x:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v1
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.6
-          bundler-cache: true
-      - name: Build and run tests
-        env:
-          COVERAGE: true
-          TERM: xterm
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-        run: |
-          gem install bundler
-          bundle install --jobs 4 --retry 3
-          bundle exec rake test
-  test-ruby-2-7-x:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v1
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.7
-          bundler-cache: true
-      - name: Build and run tests
-        env:
-          COVERAGE: true
-          TERM: xterm
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-        run: |
-          gem install bundler
-          bundle install --jobs 4 --retry 3
-          bundle exec rake test
-  test-ruby-3-0-x:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v1
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 3.0
-          bundler-cache: true
-      - name: Build and run tests
-        env:
-          COVERAGE: true
-          TERM: xterm
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-        run: |
-          gem install bundler
           bundle install --jobs 4 --retry 3
           bundle exec rake test
