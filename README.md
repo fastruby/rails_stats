@@ -8,18 +8,20 @@ RailsStats mainly adds the ability to be run from outside the project in questio
 
 ### Run it outside Rails project
 
-You will need a `Rakefile` in the directory where you call `rake` and you will
-need to require `rails_stats`:
+Install the gem globally with:
 
-```ruby
-# Rakefile
-require "rails_stats"
-```
+`gem install rails_stats`
+
+You can then run:
+
+`rails_stats PATH_TO_APP [FORMAT]`
+
+(the format is optional and defaults to the console formatter).
 
 Then you can call it:
 
 ```bash
-$ rake stats\[/path/to/app/\]
+$ rails_stats /path/to/app/
 
 Directory: /path/to/app/
 
@@ -48,7 +50,7 @@ Directory: /path/to/app/
 ### Run it on many Rails engines
 
 ```bash
-$ for dir in /path/to/many/engines/*/; do bundle exec rake stats[$dir]; done
+$ for dir in /path/to/many/engines/*/; do rails_stats /users/brian/examples/$dir; done
 ```
 
 ### Within your Rails project
@@ -80,7 +82,7 @@ RailsStats adds more coverage than the default.
 Here are some open source Rails projects and their output.
 
 ```bash
-$ bundle exec rake stats[/users/brian/examples/diaspora/]
+$ rails_stats /users/brian/examples//users/brian/examples/diaspora
 
 Directory: /users/brian/examples/diaspora
 
@@ -116,7 +118,7 @@ Directory: /users/brian/examples/diaspora
   Code LOC: 19333     Test LOC: 17403     Code to Test Ratio: 1:0.9
 
 
-$ bundle exec rake stats[/users/brian/examples/discourse]
+$ rails_stats /users/brian/examples//users/brian/examples/discourse
 
 Directory: /users/brian/examples/discourse
 
@@ -149,7 +151,7 @@ Directory: /users/brian/examples/discourse
   Code LOC: 59738     Test LOC: 28167     Code to Test Ratio: 1:0.5
 
 
-$ bundle exec rake stats[/users/brian/examples/gitlabhq]
+$ rails_stats /users/brian/examples//users/brian/examples/gitlabhq
 
 Directory: /users/brian/examples/gitlabhq
 
@@ -188,7 +190,7 @@ Directory: /users/brian/examples/gitlabhq
   Code LOC: 20039     Test LOC: 24857     Code to Test Ratio: 1:1.2
 
 
-$ bundle exec rake stats[/users/brian/examples/redmine/]
+$ rails_stats /users/brian/examples//users/brian/examples/redmine/
 
 Directory: /users/brian/examples/redmine
 
@@ -212,7 +214,7 @@ Directory: /users/brian/examples/redmine
   Code LOC: 31437     Test LOC: 42912     Code to Test Ratio: 1:1.4
 
 
-$ bundle exec rake stats[/users/brian/examples/refinerycms]
+$ rails_stats /users/brian/examples//users/brian/examples/refinerycms
 
 Directory: /users/brian/examples/refinerycms
 
@@ -240,7 +242,7 @@ Directory: /users/brian/examples/refinerycms
   Code LOC: 5447     Test LOC: 5219     Code to Test Ratio: 1:1.0
 
 
-$ bundle exec rake stats[/users/brian/examples/spree]
+$ rails_stats /users/brian/examples//users/brian/examples/spree
 
 Directory: /users/brian/examples/spree
 

@@ -1,6 +1,6 @@
 # main ([unreleased](https://github.com/fastruby/rails_stats/compare/v1.0.2...main))
 
-*
+* [FEATURE: Simplify running outside of an app](https://github.com/fastruby/rails_stats/pull/34)
 
 # v2.0.1 ([commits](https://github.com/fastruby/rails_stats/compare/v2.0.0...v2.0.1))
 
