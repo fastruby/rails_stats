@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift File.expand_path("../lib", __dir__)
+require "rails_stats/all"
+
+root_directory = ARGV[0]
+fmt = ARGV[1] || ""
+
+RailsStats::CodeStatistics.new(root_directory, {format: fmt}).to_s
