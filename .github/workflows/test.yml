@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby-version: ["2.5", "2.6", "2.7", "3.0"]
+        ruby-version: ["2.5", "2.6", "2.7", "3.0", "3.1", "3.2", "3.3", "3.4"]
 
     steps:
       - uses: actions/checkout@v1
@@ -29,8 +29,6 @@ jobs:
         run: |
           if [[ "${{ matrix.ruby-version }}" == "2.6" || "${{ matrix.ruby-version }}" == "2.7" ]]; then
             gem install bundler -v "~> 2.4.0"
-          else
-            gem install bundler
           fi
       - name: Build and run tests
         env:
@@ -38,5 +36,4 @@ jobs:
           TERM: xterm
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         run: |
-          bundle install --jobs 4 --retry 3
           bundle exec rake test
