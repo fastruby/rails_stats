@@ -1,8 +1,8 @@
 +-----------------------|------------|----------------+
 |                  Name | Total Deps | 1st Level Deps |
 +-----------------------|------------|----------------+
-|     simplecov-console | 7          | 3              |
-|               codecov | 5          | 2              |
+|     simplecov-console | 8          | 3              |
+|               codecov | 4          | 1              |
 |           rails_stats | 4          | 2              |
 |             simplecov | 3          | 3              |
 |       minitest-around | 1          | 1              |
