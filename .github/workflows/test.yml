@@ -16,22 +16,13 @@ jobs:
         ruby-version: ["2.5", "2.6", "2.7", "3.0"]
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby-version }}
+          bundler: "2.4"
           bundler-cache: true
-      - name: Uninstall existing Bundler
-        run: |
-          gem uninstall bundler -a -x || true
-      - name: Install Bundler
-        run: |
-          if [[ "${{ matrix.ruby-version }}" == "2.6" || "${{ matrix.ruby-version }}" == "2.7" ]]; then
-            gem install bundler -v "~> 2.4.0"
-          else
-            gem install bundler
-          fi
       - name: Build and run tests
         env:
           COVERAGE: true
