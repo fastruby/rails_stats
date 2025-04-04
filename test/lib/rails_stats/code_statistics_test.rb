@@ -14,7 +14,7 @@ describe RailsStats::CodeStatistics do
         RailsStats::CodeStatistics.new(root_directory).to_s
       end
 
-      assert_equal table.delete(" \n"), out.delete(" \n")
+      assert_equal table, out
     end
   end
 end
