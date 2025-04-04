@@ -21,15 +21,8 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby-version }}
+          bundler-version: "2.4.22"
           bundler-cache: true
-      - name: Install Bundler
-        run: |
-          if [[ "${{ matrix.ruby-version }}" == "2.6" || "${{ matrix.ruby-version }}" == "2.7" ]]; then
-            gem uninstall bundler -a -x || true
-            gem install bundler -v "2.4.22"
-          else
-            gem install bundler
-          fi
       - name: Build and run tests
         env:
           COVERAGE: true
