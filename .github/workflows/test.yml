@@ -21,7 +21,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby-version }}
-          bundler-version: "2.4.22"
+          bundler: "2.4"
           bundler-cache: true
       - name: Build and run tests
         env:
