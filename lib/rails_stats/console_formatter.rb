@@ -18,6 +18,7 @@ module RailsStats
       end
 
       print_code_test_stats
+      print_schema_stats
     end
 
     private
@@ -52,6 +53,16 @@ module RailsStats
 
         puts "  Code LOC: #{code}     Test LOC: #{tests}     Code to Test Ratio: 1:#{sprintf("%.1f", tests.to_f/code)}  Files: #{calculator.files_total}"
         puts ""
+      end
+
+      def print_schema_stats
+        if File.exist?(calculator.schema_path)
+          puts "  Schema Stats: #{calculator.schema} `create_table` calls in schema.rb"
+        elsif File.exist?(calculator.structure_path)
+          puts "  Schema Stats: #{calculator.schema} `CREATE TABLE` calls in structure.sql"
+        else
+          puts "  Schema Stats: No schema.rb or structure.sql file found"
+        end
       end
   end
 end
