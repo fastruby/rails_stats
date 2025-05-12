@@ -9,15 +9,18 @@ module RailsStats
 
     def initialize(root_directory)
       @root_directory = root_directory
+      @schema_path    = File.join(@root_directory, "db", "schema.rb")
+      @structure_path = File.join(@root_directory, "db", "structure.sql")
       @key_concepts   = calculate_key_concepts
       @projects       = calculate_projects
       @statistics     = calculate_statistics
       @code_loc       = calculate_code
       @test_loc       = calculate_tests
+      @schema         = calculate_create_table_calls
       @files_total, @code_total, @tests_total, @grand_total = calculate_totals
     end
 
-    attr_reader :code_loc, :code_total, :files_total, :grand_total, :statistics, :test_loc, :tests_total
+    attr_reader :code_loc, :code_total, :files_total, :grand_total, :statistics, :test_loc, :tests_total, :schema, :schema_path, :structure_path
 
     private
 
@@ -132,6 +135,24 @@ module RailsStats
         @test_loc = 0
         @statistics.each { |k, v| @test_loc += v.code_lines if v.test }
         @test_loc
+      end
+
+      def calculate_create_table_calls
+        if @schema_path && File.exist?(@schema_path)
+          count_create_table_calls(schema_path, "create_table")
+        elsif @structure_path && File.exist?(@structure_path)
+          count_create_table_calls(structure_path, "CREATE TABLE")
+        else
+          0
+        end
+      end
+
+      def count_create_table_calls(file_path, keyword)
+        create_table_count = 0
+        File.foreach(file_path) do |line|
+          create_table_count += 1 if line.strip.start_with?(keyword)
+        end
+        create_table_count
       end
   end
 end

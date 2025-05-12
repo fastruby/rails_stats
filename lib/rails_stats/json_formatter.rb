@@ -17,6 +17,8 @@ module RailsStats
       @result << stat_hash("Tests", @tests_total).merge(code_test_hash) if @tests_total
       @result << stat_hash("Total", @grand_total).merge(code_test_hash) if @grand_total
 
+      @result << { "schema_stats" => schema_info }
+
       @result
     end
 
@@ -49,6 +51,17 @@ module RailsStats
           "m_over_c" => m_over_c.to_s,
           "loc_over_m" => loc_over_m.to_s
         }
+      end
+
+      def schema_info
+        if File.exist?(calculator.schema_path)
+          {
+            "schema_stats" => calculator.schema,
+            "create_table_calls" => calculator.create_table_calls
+          }
+        else
+          { "schema_stats" => "No schema.rb file found" }
+        end
       end
   end
 end
