@@ -48,11 +48,16 @@ module RailsStats
       def schema_info
         if File.exist?(calculator.schema_path)
           {
-            "schema_stats" => calculator.schema,
-            "create_table_calls" => calculator.create_table_calls
+            "schema_path" => calculator.schema_path,
+            "create_table calls count" => calculator.schema,
+          }
+        elsif File.exist?(calculator.structure_path)
+          {
+            "structure_path" => calculator.structure_path,
+            "create_table calls count" => calculator.schema
           }
         else
-          { "schema_stats" => "No schema.rb file found" }
+          { "schema_stats" => "No schema.rb or structure.sql file found" }
         end
       end
   end
