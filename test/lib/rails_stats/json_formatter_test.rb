@@ -124,6 +124,19 @@ describe RailsStats::JSONFormatter do
       "loc_over_m": "149",
       "code_to_test_ratio": "0.0",
       "total": true
+    }, {
+      "schema_stats": {
+        "schema_path": "db/schema.rb",
+        "create_table_calls_count": 5
+      }
+    }, {
+      "sti_stats": {
+        "sti_models_count": 3
+      }
+    }, {
+      "polymorphic_stats": {
+        "polymorphic_models_count": 2
+      }
     }]
     EOS
 
