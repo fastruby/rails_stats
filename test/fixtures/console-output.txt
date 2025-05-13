@@ -38,3 +38,7 @@
 | Total                |      34 |     484 |     151 |       9 |       1 |   0 |   149 |
 +----------------------+---------+---------+---------+---------+---------+-----+-------+
   Code LOC: 145     Test LOC: 6     Code to Test Ratio: 1:0.0  Files: 34
+
+  STI models count: 0 STI classes
+  Polymorphic models count: 0 polymorphic associations
+  Schema Stats: No schema.rb or structure.sql file found
