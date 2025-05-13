@@ -10,6 +10,8 @@ module RailsStats
       end
 
       @result << { "schema_stats" => schema_info }
+      @result << { "sti_stats" => print_sti_stat }
+      @result << { "polymorphic_stats" => print_polymorphic_stats }
 
       @result
     end
@@ -43,6 +45,22 @@ module RailsStats
           "m_over_c" => m_over_c.to_s,
           "loc_over_m" => loc_over_m.to_s
         }
+      end
+
+      def print_sti_stat
+        if calculator.sti
+          {
+            "sti_models_count" => calculator.sti,
+          }
+        end
+      end
+
+      def print_polymorphic_stats
+        if calculator.polymorphic
+          {
+            "polymorphic_models_count" => calculator.polymorphic,
+          }
+        end
       end
 
       def schema_info
