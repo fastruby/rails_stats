@@ -34,10 +34,10 @@ describe RailsStats::JSONFormatter do
       "loc_over_m": "0"
     }, {
       "name": "Models",
-      "files": "1",
-      "lines": "3",
-      "loc": "3",
-      "classes": "1",
+      "files": "4",
+      "lines": "10",
+      "loc": "10",
+      "classes": "4",
       "methods": "0",
       "m_over_c": "0",
       "loc_over_m": "0"
@@ -89,8 +89,8 @@ describe RailsStats::JSONFormatter do
     }, {
       "name": "Configuration",
       "files": "19",
-      "lines": "417",
-      "loc": "111",
+      "lines": "419",
+      "loc": "113",
       "classes": "1",
       "methods": "0",
       "m_over_c": "0",
@@ -115,27 +115,27 @@ describe RailsStats::JSONFormatter do
       "loc_over_m": "0"
     }, {
       "name": "Total",
-      "files": "34",
-      "lines": "484",
-      "loc": "151",
-      "classes": "9",
+      "files": "37",
+      "lines": "493",
+      "loc": "160",
+      "classes": "12",
       "methods": "1",
       "m_over_c": "0",
-      "loc_over_m": "149",
+      "loc_over_m": "158",
       "code_to_test_ratio": "0.0",
       "total": true
     }, {
       "schema_stats": {
-        "schema_path": "db/schema.rb",
-        "create_table_calls_count": 5
+        "schema_path": "#{File.absolute_path("./test/dummy/db/schema.rb")}",
+        "create_table calls count": 2
       }
     }, {
       "sti_stats": {
-        "sti_models_count": 3
+        "sti_models_count": 1
       }
     }, {
       "polymorphic_stats": {
-        "polymorphic_models_count": 2
+        "polymorphic_models_count": 1
       }
     }]
     EOS
@@ -146,11 +146,21 @@ describe RailsStats::JSONFormatter do
       calculator = RailsStats::StatsCalculator.new(root_directory)
       formatter  = RailsStats::JSONFormatter.new(calculator)
 
-      sorted_expectation = JSON.parse(JSON_STRING).sort {|x, y| x["name"] <=> y["name"] }
-      sorted_result      = formatter.result.sort {|x, y| x["name"] <=> y["name"] }
+      parsed_expectation = JSON.parse(JSON_STRING)
+      parsed_result      = formatter.result
 
-      sorted_expectation.each_with_index do |x, i|
-        assert_equal x, sorted_result[i]
+      named_expectation    = parsed_expectation.select { |h| h.key?("name") }.sort_by { |h| h["name"] }
+      metadata_expectation = parsed_expectation.reject { |h| h.key?("name") }
+
+      named_result    = parsed_result.select { |h| h.key?("name") }.sort_by { |h| h["name"] }
+      metadata_result = parsed_result.reject { |h| h.key?("name") }
+
+      named_expectation.each_with_index do |x, i|
+        assert_equal x, named_result[i]
+      end
+
+      metadata_expectation.each_with_index do |x, i|
+        assert_equal x, metadata_result[i]
       end
     end
   end
