@@ -18,7 +18,7 @@ module RailsStats
       @test_loc       = calculate_tests
       @schema         = calculate_create_table_calls
       @sti            = calculate_sti
-      @polymorphic   = calculate_polymorphic
+      @polymorphic    = calculate_polymorphic
       @files_total, @code_total, @tests_total, @grand_total = calculate_totals
     end
 
