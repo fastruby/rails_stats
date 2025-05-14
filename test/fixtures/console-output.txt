@@ -4,12 +4,12 @@
 |     simplecov-console | 8          | 3              |
 |               codecov | 4          | 1              |
 |           rails_stats | 4          | 2              |
-|             simplecov | 3          | 3              |
-|       minitest-around | 1          | 1              |
-|               bundler | 0          | 0              |
+|                listen | 3          | 2              |
+|              bootsnap | 1          | 1              |
+|                  puma | 1          | 1              |
 |                byebug | 0          | 0              |
-|              minitest | 0          | 0              |
-| minitest-spec-context | 0          | 0              |
+|                spring | 0          | 0              |
+|           tzinfo-data | 0          | 0              |
 +-----------------------|------------|----------------+
 
       Declared Gems   9
@@ -29,16 +29,16 @@
 | Libraries            |       1 |       1 |       1 |       0 |       0 |   0 |     0 |
 | Mailers              |       1 |       4 |       4 |       1 |       0 |   0 |     0 |
 | Model Tests          |       2 |       5 |       4 |       2 |       0 |   0 |     0 |
-| Models               |       1 |       3 |       3 |       1 |       0 |   0 |     0 |
+| Models               |       4 |      10 |      10 |       4 |       0 |   0 |     0 |
 | Spec Support         |       1 |       1 |       1 |       0 |       0 |   0 |     0 |
 | Test Support         |       1 |       1 |       1 |       0 |       0 |   0 |     0 |
 +----------------------+---------+---------+---------+---------+---------+-----+-------+
-| Code                 |      30 |     477 |     145 |       7 |       1 |   0 |   143 |
+| Code                 |      33 |     486 |     154 |      10 |       1 |   0 |   152 |
 | Tests                |       4 |       7 |       6 |       2 |       0 |   0 |     0 |
-| Total                |      34 |     484 |     151 |       9 |       1 |   0 |   149 |
+| Total                |      37 |     493 |     160 |      12 |       1 |   0 |   158 |
 +----------------------+---------+---------+---------+---------+---------+-----+-------+
-  Code LOC: 145     Test LOC: 6     Code to Test Ratio: 1:0.0  Files: 34
+  Code LOC: 154     Test LOC: 6     Code to Test Ratio: 1:0.0  Files: 37
 
-  STI models count: 0 STI classes
-  Polymorphic models count: 0 polymorphic associations
-  Schema Stats: No schema.rb or structure.sql file found
+  STI models count: 1 STI classes
+  Polymorphic models count: 1 polymorphic associations
+  Schema Stats: 2 `create_table` calls in schema.rb
