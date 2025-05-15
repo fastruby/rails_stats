@@ -113,6 +113,28 @@ describe RailsStats::JSONFormatter do
       "methods": "0",
       "m_over_c": "0",
       "loc_over_m": "0"
+    },{
+      "name": "Code",
+      "files": "30",
+      "lines": "477",
+      "loc": "145",
+      "classes": "7",
+      "methods": "1",
+      "m_over_c": "0",
+      "loc_over_m": "143",
+      "code_to_test_ratio": "0.0",
+      "total": true
+    },{
+      "name": "Tests",
+      "files": "4",
+      "lines": "7",
+      "loc": "6",
+      "classes": "2",
+      "methods": "0",
+      "m_over_c": "0",
+      "loc_over_m": "0",
+      "code_to_test_ratio": "0.0",
+      "total": true
     }, {
       "name": "Total",
       "files": "34",

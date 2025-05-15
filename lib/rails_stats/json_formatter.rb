@@ -5,9 +5,9 @@ module RailsStats
     def result
       @result = @statistics.map { |key, stats| stat_hash(key, stats) }
 
-      if @grand_total
-        @result << stat_hash("Total", @grand_total).merge(code_test_hash)
-      end
+      @result << stat_hash("Code", @code_total).merge(code_test_hash) if @code_total
+      @result << stat_hash("Tests", @tests_total).merge(code_test_hash) if @tests_total
+      @result << stat_hash("Total", @grand_total).merge(code_test_hash) if @grand_total
 
       @result
     end
