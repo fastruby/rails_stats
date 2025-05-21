@@ -23,26 +23,46 @@ $ rake stats\[/path/to/app/\]
 
 Directory: /path/to/app/
 
-+----------------------+-------+-------+---------+---------+-----+-------+
-| Name                 | Lines |   LOC | Classes | Methods | M/C | LOC/M |
-+----------------------+-------+-------+---------+---------+-----+-------+
-| Controllers          |  1848 |  1483 |      32 |     174 |   5 |     6 |
-| Helpers              |  2257 |  1892 |      45 |     245 |   5 |     5 |
-| Jobs                 |   399 |   295 |      11 |      33 |   3 |     6 |
-| Models               |  4584 |  3509 |      61 |     526 |   8 |     4 |
-| Observers            |    42 |    22 |       2 |       5 |   2 |     2 |
-| Libraries            |  2987 |  2272 |      30 |     287 |   9 |     5 |
-| Configuration        |  1233 |   669 |       4 |      17 |   4 |    37 |
-| Spec Support         |  1416 |  1152 |       4 |      30 |   7 |    36 |
-| Integration Tests    |    91 |    73 |       0 |       1 |   0 |    71 |
-| Lib Tests            |   101 |    83 |       0 |       1 |   0 |    81 |
-| Model Tests          |  3397 |  2522 |       0 |      18 |   0 |   138 |
-| Cucumber Support     |   739 |   521 |       0 |       1 |   0 |   519 |
-| Cucumber Features    |  2711 |  2487 |      29 |     145 |   5 |    15 |
-+----------------------+-------+-------+---------+---------+-----+-------+
-| Total                | 21805 | 16980 |     218 |    1483 |   6 |     9 |
-+----------------------+-------+-------+---------+---------+-----+-------+
-  Code LOC: 10142     Test LOC: 6838     Code to Test Ratio: 1:0.7
++-----------------------|------------|----------------+
+|                  Name | Total Deps | 1st Level Deps |
++-----------------------|------------|----------------+
+|     simplecov-console | 7          | 3              |
+|               codecov | 5          | 2              |
+|           rails_stats | 4          | 2              |
+|             simplecov | 3          | 3              |
+|       minitest-around | 1          | 1              |
+|               bundler | 0          | 0              |
+|                byebug | 0          | 0              |
+|              minitest | 0          | 0              |
+| minitest-spec-context | 0          | 0              |
++-----------------------|------------|----------------+
+
+      Declared Gems   9
+         Total Gems   18
+  Unpinned Versions   8
+        Github Refs   0
+
++----------------------+---------+---------+---------+---------+---------+-----+-------+
+| Name                 | Files   | Lines   |     LOC | Classes | Methods | M/C | LOC/M |
++----------------------+---------+---------+---------+---------+---------+-----+-------+
+| Channels             |       2 |       8 |       8 |       2 |       0 |   0 |     0 |
+| Configuration        |      19 |     417 |     111 |       1 |       0 |   0 |     0 |
+| Controllers          |       1 |       7 |       6 |       1 |       1 |   1 |     4 |
+| Helpers              |       1 |       3 |       3 |       0 |       0 |   0 |     0 |
+| Javascripts          |       3 |      27 |       7 |       0 |       0 |   0 |     0 |
+| Jobs                 |       1 |       7 |       2 |       1 |       0 |   0 |     0 |
+| Libraries            |       1 |       1 |       1 |       0 |       0 |   0 |     0 |
+| Mailers              |       1 |       4 |       4 |       1 |       0 |   0 |     0 |
+| Model Tests          |       2 |       5 |       4 |       2 |       0 |   0 |     0 |
+| Models               |       1 |       3 |       3 |       1 |       0 |   0 |     0 |
+| Spec Support         |       1 |       1 |       1 |       0 |       0 |   0 |     0 |
+| Test Support         |       1 |       1 |       1 |       0 |       0 |   0 |     0 |
++----------------------+---------+---------+---------+---------+---------+-----+-------+
+| Code                 |      30 |     477 |     145 |       7 |       1 |   0 |   143 |
+| Tests                |       4 |       7 |       6 |       2 |       0 |   0 |     0 |
+| Total                |      34 |     484 |     151 |       9 |       1 |   0 |   149 |
++----------------------+---------+---------+---------+---------+---------+-----+-------+
+  Code LOC: 145     Test LOC: 6     Code to Test Ratio: 1:0.0  Files: 34
 ```
 
 ### Run it on many Rails engines
@@ -279,7 +299,7 @@ $ rake stats\[test/dummy,json\]
 
 Directory: /Users/etagwerker/Projects/fastruby/rails_stats/test/dummy
 
-[{"name":"Mailers","lines":"4","loc":"4","classes":"1","methods":"0","m_over_c":"0","loc_over_m":"0"},{"name":"Models","lines":"3","loc":"3","classes":"1","methods":"0","m_over_c":"0","loc_over_m":"0"},{"name":"Javascripts","lines":"27","loc":"7","classes":"0","methods":"0","m_over_c":"0","loc_over_m":"0"},{"name":"Jobs","lines":"7","loc":"2","classes":"1","methods":"0","m_over_c":"0","loc_over_m":"0"},{"name":"Controllers","lines":"7","loc":"6","classes":"1","methods":"1","m_over_c":"1","loc_over_m":"4"},{"name":"Helpers","lines":"3","loc":"3","classes":"0","methods":"0","m_over_c":"0","loc_over_m":"0"},{"name":"Channels","lines":"8","loc":"8","classes":"2","methods":"0","m_over_c":"0","loc_over_m":"0"},{"name":"Configuration","lines":"417","loc":"111","classes":"1","methods":"0","m_over_c":"0","loc_over_m":"0"},{"name":"Total","lines":"476","loc":"144","classes":"7","methods":"1","m_over_c":"0","loc_over_m":"142","code_to_test_ratio":"0.0","total":true}]
+[{"name":"Libraries","files":"1","lines":"1","loc":"1","classes":"0","methods":"0","m_over_c":"0","loc_over_m":"0"},{"name":"Mailers","files":"1","lines":"4","loc":"4","classes":"1","methods":"0","m_over_c":"0","loc_over_m":"0"},{"name":"ModelTests","files":"2","lines":"5","loc":"4","classes":"2","methods":"0","m_over_c":"0","loc_over_m":"0"},{"name":"Models","files":"1","lines":"3","loc":"3","classes":"1","methods":"0","m_over_c":"0","loc_over_m":"0"},{"name":"Javascripts","files":"3","lines":"27","loc":"7","classes":"0","methods":"0","m_over_c":"0","loc_over_m":"0"},{"name":"Jobs","files":"1","lines":"7","loc":"2","classes":"1","methods":"0","m_over_c":"0","loc_over_m":"0"},{"name":"Controllers","files":"1","lines":"7","loc":"6","classes":"1","methods":"1","m_over_c":"1","loc_over_m":"4"},{"name":"Helpers","files":"1","lines":"3","loc":"3","classes":"0","methods":"0","m_over_c":"0","loc_over_m":"0"},{"name":"Channels","files":"2","lines":"8","loc":"8","classes":"2","methods":"0","m_over_c":"0","loc_over_m":"0"},{"name":"Configuration","files":"19","lines":"417","loc":"111","classes":"1","methods":"0","m_over_c":"0","loc_over_m":"0"},{"name":"SpecSupport","files":"1","lines":"1","loc":"1","classes":"0","methods":"0","m_over_c":"0","loc_over_m":"0"},{"name":"TestSupport","files":"1","lines":"1","loc":"1","classes":"0","methods":"0","m_over_c":"0","loc_over_m":"0"},{"name":"Code","files":"30","lines":"477","loc":"145","classes":"7","methods":"1","m_over_c":"0","loc_over_m":"143","code_to_test_ratio":"0.0","total":true},{"name":"Tests","files":"4","lines":"7","loc":"6","classes":"2","methods":"0","m_over_c":"0","loc_over_m":"0","code_to_test_ratio":"0.0","total":true},{"name":"Total","files":"34","lines":"484","loc":"151","classes":"9","methods":"1","m_over_c":"0","loc_over_m":"149","code_to_test_ratio":"0.0","total":true}]
 ```
 
 ### Testing
