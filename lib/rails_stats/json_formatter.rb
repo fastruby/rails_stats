@@ -3,8 +3,18 @@ require "json"
 module RailsStats
   class JSONFormatter < StatsFormatter
     def result
-      @result = @statistics.map { |key, stats| stat_hash(key, stats) }
+      @result = []
+      # Capture stdout
+      old_stdout = $stdout
+      $stdout = StringIO.new
+      Bundler::Stats::CLI.start(["-f", "json"])
+      bundler_stats_cli_json_result = $stdout.string
+      $stdout = old_stdout
 
+      # Parse and append the JSON result
+      @result << JSON.parse(bundler_stats_cli_json_result) unless bundler_stats_cli_json_result.strip.empty?
+
+      @result += @statistics.map { |key, stats| stat_hash(key, stats) }
       @result << stat_hash("Code", @code_total).merge(code_test_hash) if @code_total
       @result << stat_hash("Tests", @tests_total).merge(code_test_hash) if @tests_total
       @result << stat_hash("Total", @grand_total).merge(code_test_hash) if @grand_total
