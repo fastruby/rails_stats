@@ -4,12 +4,12 @@
 |     simplecov-console | 8          | 3              |
 |               codecov | 4          | 1              |
 |           rails_stats | 4          | 2              |
-|                listen | 3          | 2              |
-|              bootsnap | 1          | 1              |
-|                  puma | 1          | 1              |
+|             simplecov | 3          | 3              |
+|       minitest-around | 1          | 1              |
+|               bundler | 0          | 0              |
 |                byebug | 0          | 0              |
-|                spring | 0          | 0              |
-|           tzinfo-data | 0          | 0              |
+|              minitest | 0          | 0              |
+| minitest-spec-context | 0          | 0              |
 +-----------------------|------------|----------------+
 
       Declared Gems   9
@@ -33,11 +33,11 @@
 | Spec Support         |       1 |       1 |       1 |       0 |       0 |   0 |     0 |
 | Test Support         |       1 |       1 |       1 |       0 |       0 |   0 |     0 |
 +----------------------+---------+---------+---------+---------+---------+-----+-------+
-| Code                 |      33 |     486 |     154 |      10 |       1 |   0 |   152 |
+| Code                 |      33 |     484 |     152 |      10 |       1 |   0 |   150 |
 | Tests                |       4 |       7 |       6 |       2 |       0 |   0 |     0 |
-| Total                |      37 |     493 |     160 |      12 |       1 |   0 |   158 |
+| Total                |      37 |     491 |     158 |      12 |       1 |   0 |   156 |
 +----------------------+---------+---------+---------+---------+---------+-----+-------+
-  Code LOC: 154     Test LOC: 6     Code to Test Ratio: 1:0.0  Files: 37
+  Code LOC: 152     Test LOC: 6     Code to Test Ratio: 1:0.0  Files: 37
 
   STI models count: 1 STI classes
   Polymorphic models count: 1 polymorphic associations
