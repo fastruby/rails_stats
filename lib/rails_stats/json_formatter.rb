@@ -4,14 +4,12 @@ module RailsStats
   class JSONFormatter < StatsFormatter
     def result
       @result = []
-      # Capture stdout
       old_stdout = $stdout
       $stdout = StringIO.new
       Bundler::Stats::CLI.start(["-f", "json"])
       bundler_stats_cli_json_result = $stdout.string
       $stdout = old_stdout
 
-      # Parse and append the JSON result
       @result << JSON.parse(bundler_stats_cli_json_result) unless bundler_stats_cli_json_result.strip.empty?
 
       @result += @statistics.map { |key, stats| stat_hash(key, stats) }
@@ -23,7 +21,7 @@ module RailsStats
     end
 
     def to_s
-      puts result.to_json
+      puts JSON.generate(result, ascii_only: false)
     end
 
     private

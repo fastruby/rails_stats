@@ -5,148 +5,253 @@ require "test_helper"
 describe RailsStats::JSONFormatter do
   describe "#result" do
     JSON_STRING = <<~EOS
-    [{
-      "name": "Libraries",
-      "files": "1",
-      "lines": "1",
-      "loc": "1",
-      "classes": "0",
-      "methods": "0",
-      "m_over_c": "0",
-      "loc_over_m": "0"
-    }, {
-      "name": "Mailers",
-      "files": "1",
-      "lines": "4",
-      "loc": "4",
-      "classes": "1",
-      "methods": "0",
-      "m_over_c": "0",
-      "loc_over_m": "0"
-    }, {
-      "name": "Model Tests",
-      "files": "2",
-      "lines": "5",
-      "loc": "4",
-      "classes": "2",
-      "methods": "0",
-      "m_over_c": "0",
-      "loc_over_m": "0"
-    }, {
-      "name": "Models",
-      "files": "1",
-      "lines": "3",
-      "loc": "3",
-      "classes": "1",
-      "methods": "0",
-      "m_over_c": "0",
-      "loc_over_m": "0"
-    }, {
-      "name": "Javascripts",
-      "files": "3",
-      "lines": "27",
-      "loc": "7",
-      "classes": "0",
-      "methods": "0",
-      "m_over_c": "0",
-      "loc_over_m": "0"
-    }, {
-      "name": "Jobs",
-      "files": "1",
-      "lines": "7",
-      "loc": "2",
-      "classes": "1",
-      "methods": "0",
-      "m_over_c": "0",
-      "loc_over_m": "0"
-    }, {
-      "name": "Controllers",
-      "files": "1",
-      "lines": "7",
-      "loc": "6",
-      "classes": "1",
-      "methods": "1",
-      "m_over_c": "1",
-      "loc_over_m": "4"
-    }, {
-      "name": "Helpers",
-      "files": "1",
-      "lines": "3",
-      "loc": "3",
-      "classes": "0",
-      "methods": "0",
-      "m_over_c": "0",
-      "loc_over_m": "0"
-    }, {
-      "name": "Channels",
-      "files": "2",
-      "lines": "8",
-      "loc": "8",
-      "classes": "2",
-      "methods": "0",
-      "m_over_c": "0",
-      "loc_over_m": "0"
-    }, {
-      "name": "Configuration",
-      "files": "19",
-      "lines": "417",
-      "loc": "111",
-      "classes": "1",
-      "methods": "0",
-      "m_over_c": "0",
-      "loc_over_m": "0"
-    }, {
-      "name": "Spec Support",
-      "files": "1",
-      "lines": "1",
-      "loc": "1",
-      "classes": "0",
-      "methods": "0",
-      "m_over_c": "0",
-      "loc_over_m": "0"
-    }, {
-      "name": "Test Support",
-      "files": "1",
-      "lines": "1",
-      "loc": "1",
-      "classes": "0",
-      "methods": "0",
-      "m_over_c": "0",
-      "loc_over_m": "0"
-    },{
-      "name": "Code",
-      "files": "30",
-      "lines": "477",
-      "loc": "145",
-      "classes": "7",
-      "methods": "1",
-      "m_over_c": "0",
-      "loc_over_m": "143",
-      "code_to_test_ratio": "0.0",
-      "total": true
-    },{
-      "name": "Tests",
-      "files": "4",
-      "lines": "7",
-      "loc": "6",
-      "classes": "2",
-      "methods": "0",
-      "m_over_c": "0",
-      "loc_over_m": "0",
-      "code_to_test_ratio": "0.0",
-      "total": true
-    }, {
-      "name": "Total",
-      "files": "34",
-      "lines": "484",
-      "loc": "151",
-      "classes": "9",
-      "methods": "1",
-      "m_over_c": "0",
-      "loc_over_m": "149",
-      "code_to_test_ratio": "0.0",
-      "total": true
-    }]
+      [{
+        "summary": {
+          "declared": 9,
+          "unpinned": 8,
+          "total": 18,
+          "github": 0
+        },
+        "gems": [
+          {
+            "name": "simplecov-console",
+            "total_dependencies": 8,
+            "first_level_dependencies": 3,
+            "top_level_dependencies": {},
+            "transitive_dependencies": [
+              "ansi (>= 0)",
+              "simplecov (>= 0)",
+              "terminal-table (>= 0)",
+              "docile (~> 1.1)",
+              "simplecov-html (~> 0.11)",
+              "simplecov_json_formatter (~> 0.1)",
+              "unicode-display_width (>= 1.1.1, < 4)",
+              "unicode-emoji (~> 4.0, >= 4.0.4)"
+            ]
+          },
+          {
+            "name": "codecov",
+            "total_dependencies": 4,
+            "first_level_dependencies": 1,
+            "top_level_dependencies": {},
+            "transitive_dependencies": [
+              "simplecov (>= 0.15, < 0.22)",
+              "docile (~> 1.1)",
+              "simplecov-html (~> 0.11)",
+              "simplecov_json_formatter (~> 0.1)"
+            ]
+          },
+          {
+            "name": "rails_stats",
+            "total_dependencies": 4,
+            "first_level_dependencies": 2,
+            "top_level_dependencies": {},
+            "transitive_dependencies": [
+              "bundler-stats (>= 2.1)",
+              "rake (>= 0)",
+              "bundler (>= 1.9, < 3)",
+              "thor (>= 0.19.0, < 2.0)"
+            ]
+          },
+          {
+            "name": "simplecov",
+            "total_dependencies": 3,
+            "first_level_dependencies": 3,
+            "top_level_dependencies": {
+              "codecov": "codecov (0.6.0)",
+              "simplecov-console": "simplecov-console (0.9.3)"
+            },
+            "transitive_dependencies": [
+              "docile (~> 1.1)",
+              "simplecov-html (~> 0.11)",
+              "simplecov_json_formatter (~> 0.1)"
+            ]
+          },
+          {
+            "name": "minitest-around",
+            "total_dependencies": 1,
+            "first_level_dependencies": 1,
+            "top_level_dependencies": {},
+            "transitive_dependencies": [
+              "minitest (~> 5.0)"
+            ]
+          },
+          {
+            "name": "bundler",
+            "total_dependencies": 0,
+            "first_level_dependencies": 0,
+            "top_level_dependencies": {
+              "bundler-stats": "bundler-stats (2.4.0)",
+              "rails_stats": "rails_stats (2.0.1)"
+            },
+            "transitive_dependencies": []
+          },
+          {
+            "name": "byebug",
+            "total_dependencies": 0,
+            "first_level_dependencies": 0,
+            "top_level_dependencies": {},
+            "transitive_dependencies": []
+          },
+          {
+            "name": "minitest",
+            "total_dependencies": 0,
+            "first_level_dependencies": 0,
+            "top_level_dependencies": {
+              "minitest-around": "minitest-around (0.5.0)"
+            },
+            "transitive_dependencies": []
+          },
+          {
+            "name": "minitest-spec-context",
+            "total_dependencies": 0,
+            "first_level_dependencies": 0,
+            "top_level_dependencies": {},
+            "transitive_dependencies": []
+          }
+        ]
+      },{
+        "name": "Mailers",
+        "files": "1",
+        "lines": "4",
+        "loc": "4",
+        "classes": "1",
+        "methods": "0",
+        "m_over_c": "0",
+        "loc_over_m": "0"
+      }, {
+        "name": "Helpers",
+        "files": "1",
+        "lines": "3",
+        "loc": "3",
+        "classes": "0",
+        "methods": "0",
+        "m_over_c": "0",
+        "loc_over_m": "0"
+      }, {
+        "name": "Jobs",
+        "files": "1",
+        "lines": "7",
+        "loc": "2",
+        "classes": "1",
+        "methods": "0",
+        "m_over_c": "0",
+        "loc_over_m": "0"
+      }, {
+        "name": "Controllers",
+        "files": "1",
+        "lines": "7",
+        "loc": "6",
+        "classes": "1",
+        "methods": "1",
+        "m_over_c": "1",
+        "loc_over_m": "4"
+      }, {
+        "name": "Models",
+        "files": "1",
+        "lines": "3",
+        "loc": "3",
+        "classes": "1",
+        "methods": "0",
+        "m_over_c": "0",
+        "loc_over_m": "0"
+      }, {
+        "name": "Channels",
+        "files": "2",
+        "lines": "8",
+        "loc": "8",
+        "classes": "2",
+        "methods": "0",
+        "m_over_c": "0",
+        "loc_over_m": "0"
+      }, {
+        "name": "Javascripts",
+        "files": "3",
+        "lines": "27",
+        "loc": "7",
+        "classes": "0",
+        "methods": "0",
+        "m_over_c": "0",
+        "loc_over_m": "0"
+      }, {
+        "name": "Libraries",
+        "files": "1",
+        "lines": "1",
+        "loc": "1",
+        "classes": "0",
+        "methods": "0",
+        "m_over_c": "0",
+        "loc_over_m": "0"
+      }, {
+        "name": "Configuration",
+        "files": "19",
+        "lines": "417",
+        "loc": "111",
+        "classes": "1",
+        "methods": "0",
+        "m_over_c": "0",
+        "loc_over_m": "0"
+      }, {
+        "name": "Model Tests",
+        "files": "2",
+        "lines": "5",
+        "loc": "4",
+        "classes": "2",
+        "methods": "0",
+        "m_over_c": "0",
+        "loc_over_m": "0"
+      }, {
+        "name": "Spec Support",
+        "files": "1",
+        "lines": "1",
+        "loc": "1",
+        "classes": "0",
+        "methods": "0",
+        "m_over_c": "0",
+        "loc_over_m": "0"
+      }, {
+        "name": "Test Support",
+        "files": "1",
+        "lines": "1",
+        "loc": "1",
+        "classes": "0",
+        "methods": "0",
+        "m_over_c": "0",
+        "loc_over_m": "0"
+      }, {
+        "name": "Code",
+        "files": "30",
+        "lines": "477",
+        "loc": "145",
+        "classes": "7",
+        "methods": "1",
+        "m_over_c": "0",
+        "loc_over_m": "143",
+        "code_to_test_ratio": "0.0",
+        "total": true
+      }, {
+        "name": "Tests",
+        "files": "4",
+        "lines": "7",
+        "loc": "6",
+        "classes": "2",
+        "methods": "0",
+        "m_over_c": "0",
+        "loc_over_m": "0",
+        "code_to_test_ratio": "0.0",
+        "total": true
+      }, {
+        "name": "Total",
+        "files": "34",
+        "lines": "484",
+        "loc": "151",
+        "classes": "9",
+        "methods": "1",
+        "m_over_c": "0",
+        "loc_over_m": "149",
+        "code_to_test_ratio": "0.0",
+        "total": true
+      }]
     EOS
 
     it "outputs useful stats for a Rails project" do
@@ -155,8 +260,8 @@ describe RailsStats::JSONFormatter do
       calculator = RailsStats::StatsCalculator.new(root_directory)
       formatter  = RailsStats::JSONFormatter.new(calculator)
 
-      sorted_expectation = JSON.parse(JSON_STRING).sort {|x, y| x["name"] <=> y["name"] }
-      sorted_result      = formatter.result.sort {|x, y| x["name"] <=> y["name"] }
+      sorted_expectation = JSON.parse(JSON_STRING)
+      sorted_result      = formatter.result
 
       sorted_expectation.each_with_index do |x, i|
         assert_equal x, sorted_result[i]
