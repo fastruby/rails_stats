@@ -263,18 +263,20 @@ describe RailsStats::JSONFormatter do
       expectation = JSON.parse(JSON_STRING)
       result = formatter.result
 
-      expectation.each do |hash|
-        if hash["gems"]
-          hash["gems"].each do |gem|
-            gem["transitive_dependencies"]&.sort!
-          end
-        end
-      end
+      [expectation, result].each do |data|
+        data.each do |hash|
+          next unless hash["gems"]
 
-      result.each do |hash|
-        if hash["gems"]
           hash["gems"].each do |gem|
-            gem["transitive_dependencies"]&.sort!
+            next unless gem["transitive_dependencies"]
+
+            gem["transitive_dependencies"].map! do |dep|
+              name, constraints = dep.split(/[()]/)
+              next dep unless constraints
+
+              normalized_constraints = constraints.split(/,\s*/).sort.join(', ')
+              "#{name}(#{normalized_constraints})"
+            end.sort!
           end
         end
       end
