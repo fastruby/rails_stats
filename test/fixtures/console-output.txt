@@ -1,8 +1,8 @@
 +-----------------------|------------|----------------+
 |                  Name | Total Deps | 1st Level Deps |
 +-----------------------|------------|----------------+
-|     simplecov-console | 7          | 3              |
-|               codecov | 5          | 2              |
+|     simplecov-console | 8          | 3              |
+|               codecov | 4          | 1              |
 |           rails_stats | 4          | 2              |
 |             simplecov | 3          | 3              |
 |       minitest-around | 1          | 1              |
@@ -14,14 +14,14 @@
 
       Declared Gems   9
          Total Gems   18
-  Unpinned Versions   8
+  Unpinned Versions   6
         Github Refs   0
 
 +----------------------+---------+---------+---------+---------+---------+-----+-------+
 | Name                 | Files   | Lines   |     LOC | Classes | Methods | M/C | LOC/M |
 +----------------------+---------+---------+---------+---------+---------+-----+-------+
 | Channels             |       2 |       8 |       8 |       2 |       0 |   0 |     0 |
-| Configuration        |      19 |     417 |     111 |       1 |       0 |   0 |     0 |
+| Configuration         |      19 |     417 |     111 |       1 |       0 |   0 |     0 |
 | Controllers          |       1 |       7 |       6 |       1 |       1 |   1 |     4 |
 | Helpers              |       1 |       3 |       3 |       0 |       0 |   0 |     0 |
 | Javascripts          |       3 |      27 |       7 |       0 |       0 |   0 |     0 |
