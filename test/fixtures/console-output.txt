@@ -12,12 +12,10 @@
 | minitest-spec-context | 0          | 0              |
 +-----------------------|------------|----------------+
 
-
       Declared Gems   9
          Total Gems   18
   Unpinned Versions   6
         Github Refs   0
-
 
 +----------------------+---------+---------+---------+---------+---------+-----+-------+
 | Name                 | Files   | Lines   |     LOC | Classes | Methods | M/C | LOC/M |
