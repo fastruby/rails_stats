@@ -27,7 +27,9 @@ jobs:
           gem uninstall bundler -a -x || true
       - name: Install Bundler
         run: |
-          if [[ "${{ matrix.ruby-version }}" == "2.6" || "${{ matrix.ruby-version }}" == "2.7" ]]; then
+          if [[ "${{ matrix.ruby-version }}" == "2.5" ]]; then
+            gem install bundler -v "~> 2.3.27"
+          elif [[ "${{ matrix.ruby-version }}" == "2.6" || "${{ matrix.ruby-version }}" == "2.7" ]]; then
             gem install bundler -v "~> 2.4.0"
           else
             gem install bundler
