@@ -120,19 +120,10 @@ describe RailsStats::JSONFormatter do
           "m_over_c": "0",
           "loc_over_m": "0"
         }, {
-          "name": "Models",
-          "files": "4",
-          "lines": "10",
-          "loc": "10",
-          "classes": "4",
-          "methods": "0",
-          "m_over_c": "0",
-          "loc_over_m": "0"
-        }, {
-          "name": "Javascripts",
-          "files": "3",
-          "lines": "27",
-          "loc": "7",
+          "name": "Helpers",
+          "files": "1",
+          "lines": "3",
+          "loc": "3",
           "classes": "0",
           "methods": "0",
           "m_over_c": "0",
@@ -156,11 +147,11 @@ describe RailsStats::JSONFormatter do
           "m_over_c": "1",
           "loc_over_m": "4"
         }, {
-          "name": "Helpers",
-          "files": "1",
-          "lines": "3",
-          "loc": "3",
-          "classes": "0",
+          "name": "Models",
+          "files": "4",
+          "lines": "10",
+          "loc": "10",
+          "classes": "4",
           "methods": "0",
           "m_over_c": "0",
           "loc_over_m": "0"
@@ -170,6 +161,15 @@ describe RailsStats::JSONFormatter do
           "lines": "8",
           "loc": "8",
           "classes": "2",
+          "methods": "0",
+          "m_over_c": "0",
+          "loc_over_m": "0"
+        }, {
+          "name": "Javascripts",
+          "files": "3",
+          "lines": "27",
+          "loc": "7",
+          "classes": "0",
           "methods": "0",
           "m_over_c": "0",
           "loc_over_m": "0"
@@ -252,11 +252,13 @@ describe RailsStats::JSONFormatter do
           "code_to_test_ratio": "0.0",
           "total": true},
           {"schema_stats":
-          {"schema_path":
-          "/Users/hmdros/code/hmdros/miles_notifier_app/rails_stats/test/dummy/db/schema.rb",
-          "create_table calls count": 2}},
-          {"sti_stats": {"sti_models_count": 1}},
-          {"polymorphic_stats": {"polymorphic_models_count": 1}}]
+            {"schema_path":
+            "#{Dir.pwd}/test/dummy/db/schema.rb",
+            "create_table calls count": 2}},
+            {"sti_stats": {"sti_models_count": 1}},
+            {"polymorphic_stats": {"polymorphic_models_count": 1}
+          }
+        ]
     EOS
 
     it "outputs useful stats for a Rails project" do
