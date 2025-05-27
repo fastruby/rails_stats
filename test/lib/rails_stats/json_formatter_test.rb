@@ -260,12 +260,26 @@ describe RailsStats::JSONFormatter do
       calculator = RailsStats::StatsCalculator.new(root_directory)
       formatter  = RailsStats::JSONFormatter.new(calculator)
 
-      sorted_expectation = JSON.parse(JSON_STRING)
-      sorted_result      = formatter.result
+      expectation = JSON.parse(JSON_STRING)
+      result = formatter.result
 
-      sorted_expectation.each_with_index do |x, i|
-        assert_equal x, sorted_result[i]
+      expectation.each do |hash|
+        if hash["gems"]
+          hash["gems"].each do |gem|
+            gem["transitive_dependencies"]&.sort!
+          end
+        end
       end
+
+      result.each do |hash|
+        if hash["gems"]
+          hash["gems"].each do |gem|
+            gem["transitive_dependencies"]&.sort!
+          end
+        end
+      end
+
+      assert_equal expectation, result
     end
   end
 end
