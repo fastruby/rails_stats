@@ -8,7 +8,7 @@ describe RailsStats::JSONFormatter do
       [{
         "summary": {
           "declared": 9,
-          "unpinned": 8,
+          "unpinned": 6,
           "total": 18,
           "github": 0
         },

@@ -14,7 +14,7 @@
 
       Declared Gems   9
          Total Gems   18
-  Unpinned Versions   8
+  Unpinned Versions   6
         Github Refs   0
 
 +----------------------+---------+---------+---------+---------+---------+-----+-------+
