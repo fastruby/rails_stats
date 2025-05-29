@@ -166,7 +166,7 @@ describe RailsStats::JSONFormatter do
           "loc_over_m": "0"
         }, {
           "name": "Javascripts",
-          "files": "3",
+          "files": "4",
           "lines": "27",
           "loc": "7",
           "classes": "0",
@@ -220,7 +220,7 @@ describe RailsStats::JSONFormatter do
           "loc_over_m": "0"
         }, {
           "name": "Code",
-          "files": "33",
+          "files": "34",
           "lines": "484",
           "loc": "152",
           "classes": "10",
@@ -242,7 +242,7 @@ describe RailsStats::JSONFormatter do
           "total": true
         }, {
           "name": "Total",
-          "files": "37",
+          "files": "38",
           "lines": "491",
           "loc": "158",
           "classes": "12",
