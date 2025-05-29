@@ -255,7 +255,6 @@ describe RailsStats::JSONFormatter do
             {"schema_path":
             "#{Dir.pwd}/test/dummy/db/schema.rb",
             "create_table calls count": 2}},
-            {"sti_stats": {"sti_models_count": 1}},
             {"polymorphic_stats": {"polymorphic_models_count": 1}
           }
         ]

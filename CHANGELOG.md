@@ -2,7 +2,7 @@
 
 * [BUGFIX: Fix JSON output missing Code and Tests total count](https://github.com/fastruby/rails_stats/pull/40)
 * Update README examples
-* [FEATURE: Output number of table created from schema.rb or structure.sql, add STI count add polymorphic models count](https://github.com/fastruby/rails_stats/pull/37)
+* [FEATURE: Output number of table created from schema.rb or structure.sql, add polymorphic models count](https://github.com/fastruby/rails_stats/pull/37)
 
 # v2.0.1 ([commits](https://github.com/fastruby/rails_stats/compare/v2.0.0...v2.0.1))
 

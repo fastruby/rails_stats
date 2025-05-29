@@ -17,12 +17,11 @@ module RailsStats
       @code_loc       = calculate_code
       @test_loc       = calculate_tests
       @schema         = calculate_create_table_calls
-      @sti            = calculate_sti
       @polymorphic    = calculate_polymorphic
       @files_total, @code_total, @tests_total, @grand_total = calculate_totals
     end
 
-    attr_reader :code_loc, :code_total, :files_total, :grand_total, :statistics, :test_loc, :tests_total, :schema, :schema_path, :structure_path, :sti, :polymorphic
+    attr_reader :code_loc, :code_total, :files_total, :grand_total, :statistics, :test_loc, :tests_total, :schema, :schema_path, :structure_path, :polymorphic
 
     private
 
@@ -153,18 +152,6 @@ module RailsStats
           create_table_count += 1 if line.strip.start_with?(keyword)
         end
         create_table_count
-      end
-
-      def calculate_sti
-        @sti = 0
-        Dir.glob(File.join(@root_directory, "app", "models", "*.rb")).each do |file|
-          File.foreach(file) do |line|
-            if line =~ /class\s+(\w+)\s*<\s*(\w+)/ && !(line =~ /class\s+(\w+)\s*<\s*(ActiveRecord::Base|ApplicationRecord)/)
-              @sti += 1
-            end
-          end
-        end
-        @sti
       end
 
       def calculate_polymorphic

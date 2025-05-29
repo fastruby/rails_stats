@@ -39,6 +39,5 @@
 +----------------------+---------+---------+---------+---------+---------+-----+-------+
   Code LOC: 152     Test LOC: 6     Code to Test Ratio: 1:0.0  Files: 37
 
-  STI models count: 1 STI classes
   Polymorphic models count: 1 polymorphic associations
   Schema Stats: 2 `create_table` calls in schema.rb

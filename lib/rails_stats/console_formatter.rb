@@ -18,7 +18,6 @@ module RailsStats
       end
 
       print_code_test_stats
-      print_sti_stats
       print_polymorphic_stats
       print_schema_stats
     end
@@ -55,10 +54,6 @@ module RailsStats
 
         puts "  Code LOC: #{code}     Test LOC: #{tests}     Code to Test Ratio: 1:#{sprintf("%.1f", tests.to_f/code)}  Files: #{calculator.files_total}"
         puts ""
-      end
-
-      def print_sti_stats
-        puts "  STI models count: #{calculator.sti} STI classes"
       end
 
       def print_polymorphic_stats
