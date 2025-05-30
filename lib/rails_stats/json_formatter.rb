@@ -17,6 +17,9 @@ module RailsStats
       @result << stat_hash("Tests", @tests_total).merge(code_test_hash) if @tests_total
       @result << stat_hash("Total", @grand_total).merge(code_test_hash) if @grand_total
 
+      @result << { "schema_stats" => schema_info }
+      @result << { "polymorphic_stats" => print_polymorphic_stats }
+
       @result
     end
 
@@ -49,6 +52,30 @@ module RailsStats
           "m_over_c" => m_over_c.to_s,
           "loc_over_m" => loc_over_m.to_s
         }
+      end
+
+      def print_polymorphic_stats
+        if calculator.polymorphic
+          {
+            "polymorphic_models_count" => calculator.polymorphic,
+          }
+        end
+      end
+
+      def schema_info
+        if File.exist?(calculator.schema_path)
+          {
+            "schema_path" => calculator.schema_path,
+            "create_table calls count" => calculator.schema,
+          }
+        elsif File.exist?(calculator.structure_path)
+          {
+            "structure_path" => calculator.structure_path,
+            "create_table calls count" => calculator.schema
+          }
+        else
+          { "schema_stats" => "No schema.rb or structure.sql file found" }
+        end
       end
   end
 end

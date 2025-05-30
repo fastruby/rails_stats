@@ -1,0 +1,2 @@
+class Pets < User
+end

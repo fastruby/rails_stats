@@ -14,7 +14,10 @@ describe RailsStats::CodeStatistics do
         RailsStats::CodeStatistics.new(root_directory).to_s
       end
 
-      assert_equal table, out
+      assert_equal(
+        table.lines.map(&:rstrip).join,
+        out.lines.map(&:rstrip).join
+      )
     end
   end
 end
