@@ -75,7 +75,7 @@ module RailsStats
       out
     end
 
-    def calculate_directory_statistics(directory, pattern = /.*\.(rb|js|ts|coffee|feature)$/)
+    def calculate_directory_statistics(directory, pattern = /.*\.(rb|js|jsx|ts|tsx|coffee|feature)$/)
       stats = CodeStatisticsCalculator.new
 
       Dir.foreach(directory) do |file_name|
