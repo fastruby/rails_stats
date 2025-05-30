@@ -18,7 +18,19 @@ module RailsStats
         end_block_comment: %r{\*/},
         method: /function(\s+[_a-zA-Z][\da-zA-Z]*)?\s*\(/,
       },
+      jsx: {
+        line_comment: %r{^\s*//},
+        begin_block_comment: %r{^\s*/\*},
+        end_block_comment: %r{\*/},
+        method: /^\s*function(\s+[_a-zA-Z][\da-zA-Z]*)?\s*\(/,
+      },
       ts: {
+        line_comment: %r{^\s*//},
+        begin_block_comment: %r{^\s*/\*},
+        end_block_comment: %r{\*/},
+        method: /^\s*function(\s+[_a-zA-Z][\da-zA-Z]*)?\s*\(/,
+      },
+      tsx: {
         line_comment: %r{^\s*//},
         begin_block_comment: %r{^\s*/\*},
         end_block_comment: %r{\*/},
