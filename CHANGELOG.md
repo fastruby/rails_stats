@@ -1,4 +1,4 @@
-# main ([unreleased](https://github.com/fastruby/rails_stats/compare/v1.0.2...main))
+# main ([unreleased](https://github.com/fastruby/rails_stats/compare/v2.1.0...main))
 
 * [CHORE: Improve the GH Test Workflow](https://github.com/fastruby/rails_stats/pull/35)
 * [BUGFIX: Explicitly set format as text for `Bundler::Stats::CLI` on `ConsoleFormatter`](https://github.com/fastruby/rails_stats/pull/43)
