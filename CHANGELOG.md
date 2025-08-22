@@ -1,5 +1,7 @@
 # main ([unreleased](https://github.com/fastruby/rails_stats/compare/v1.0.2...main))
 
+# v2.1.0 ([commits](https://github.com/fastruby/rails_stats/compare/v2.1.0...v2.0.1))
+
 * [BUGFIX: Fix JSON output missing Code and Tests total count](https://github.com/fastruby/rails_stats/pull/40)
 * Update README examples
 * [FEATURE: Output number of tables created from schema.rb or structure.sql, add polymorphic models count](https://github.com/fastruby/rails_stats/pull/37)
