@@ -24,7 +24,7 @@
 | Configuration        |      19 |     417 |     111 |       1 |       0 |   0 |     0 |
 | Controllers          |       1 |       7 |       6 |       1 |       1 |   1 |     4 |
 | Helpers              |       1 |       3 |       3 |       0 |       0 |   0 |     0 |
-| Javascripts          |       3 |      27 |       7 |       0 |       0 |   0 |     0 |
+| Javascripts          |       6 |      28 |       7 |       0 |       0 |   0 |     0 |
 | Jobs                 |       1 |       7 |       2 |       1 |       0 |   0 |     0 |
 | Libraries            |       1 |       1 |       1 |       0 |       0 |   0 |     0 |
 | Mailers              |       1 |       4 |       4 |       1 |       0 |   0 |     0 |
@@ -33,11 +33,11 @@
 | Spec Support         |       1 |       1 |       1 |       0 |       0 |   0 |     0 |
 | Test Support         |       1 |       1 |       1 |       0 |       0 |   0 |     0 |
 +----------------------+---------+---------+---------+---------+---------+-----+-------+
-| Code                 |      33 |     484 |     152 |      10 |       1 |   0 |   150 |
+| Code                 |      36 |     485 |     152 |      10 |       1 |   0 |   150 |
 | Tests                |       4 |       7 |       6 |       2 |       0 |   0 |     0 |
-| Total                |      37 |     491 |     158 |      12 |       1 |   0 |   156 |
+| Total                |      40 |     492 |     158 |      12 |       1 |   0 |   156 |
 +----------------------+---------+---------+---------+---------+---------+-----+-------+
-  Code LOC: 152     Test LOC: 6     Code to Test Ratio: 1:0.0  Files: 37
+  Code LOC: 152     Test LOC: 6     Code to Test Ratio: 1:0.0  Files: 40
 
   Polymorphic models count: 1 polymorphic associations
   Schema Stats: 2 `create_table` calls in schema.rb
