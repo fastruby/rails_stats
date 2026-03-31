@@ -14,9 +14,13 @@ describe RailsStats::CodeStatistics do
         RailsStats::CodeStatistics.new(root_directory).to_s
       end
 
+      # Compare only the code stats portion of the output, skipping the
+      # bundler-stats gem table which varies across Ruby versions.
+      code_stats_output = out[out.index("+----------------------+")..-1]
+
       assert_equal(
         table.lines.map(&:rstrip).join,
-        out.lines.map(&:rstrip).join
+        code_stats_output.lines.map(&:rstrip).join
       )
     end
   end
