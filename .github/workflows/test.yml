@@ -44,6 +44,7 @@ jobs:
       - name: Build and run tests
         env:
           COVERAGE: true
+          # TERM is required for colored/formatted test output in CI
           TERM: xterm
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         run: |
