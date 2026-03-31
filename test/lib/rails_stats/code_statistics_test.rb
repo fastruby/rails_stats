@@ -8,16 +8,13 @@ describe RailsStats::CodeStatistics do
   describe "#to_s" do
     it "outputs useful stats for a Rails project" do
       root_directory = File.expand_path('../../../test/dummy', File.dirname(__FILE__))
-      table = File.read(File.expand_path('../../../fixtures/console-output.txt', __FILE__))
+      expected_table = File.read(File.expand_path('../../../fixtures/console-output.txt', __FILE__))
 
-      out, err = capture_io do
-        RailsStats::CodeStatistics.new(root_directory).to_s
-      end
+      expected_bundler_table, _ = capture_io { Bundler::Stats::CLI.start }
 
-      assert_includes(
-        out.lines.map(&:rstrip).join,
-        table.lines.map(&:rstrip).join
-      )
+      output, _ = capture_io { RailsStats::CodeStatistics.new(root_directory).to_s }
+
+      assert_equal([expected_bundler_table, expected_table].join, output)
     end
   end
 end
