@@ -32,10 +32,15 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby-version }}
-          bundler-cache: true
+          # Disable bundler-cache when a custom bundler version is required,
+          # as setup-ruby's cache is tied to the bundler it installs.
+          bundler-cache: ${{ !matrix.bundler-version }}
       - name: Install Bundler
         if: matrix.bundler-version
         run: gem install bundler -v "~> ${{ matrix.bundler-version }}"
+      - name: Install gems
+        if: matrix.bundler-version
+        run: bundle install
       - name: Build and run tests
         env:
           COVERAGE: true
