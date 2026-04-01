@@ -1,4 +1,6 @@
-# main ([unreleased](https://github.com/fastruby/rails_stats/compare/v1.0.2...main))
+# main ([unreleased](https://github.com/fastruby/rails_stats/compare/v2.1.0...main))
+
+# v2.1.0 ([commits](https://github.com/fastruby/rails_stats/compare/v2.1.0...v2.0.1))
 
 * [CHORE: Improve the GH Test Workflow](https://github.com/fastruby/rails_stats/pull/35)
 * [BUGFIX: Fix JSON output missing Code and Tests total count](https://github.com/fastruby/rails_stats/pull/40)
