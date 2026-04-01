@@ -3,7 +3,7 @@ require "bundler/stats/cli"
 module RailsStats
   class ConsoleFormatter < StatsFormatter
     def to_s
-      Bundler::Stats::CLI.start
+      Bundler::Stats::CLI.start(['--format', 'text'])
 
       print_header
       sorted_keys = @statistics.keys.sort
