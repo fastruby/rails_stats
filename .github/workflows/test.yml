@@ -13,29 +13,38 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby-version: ["2.5", "2.6", "2.7", "3.0", "3.1", "3.2", "3.3", "3.4"]
+        include:
+          - ruby-version: "2.5"
+            bundler-version: "2.3.27"
+          - ruby-version: "2.6"
+            bundler-version: "2.4.0"
+          - ruby-version: "2.7"
+            bundler-version: "2.4.0"
+          - ruby-version: "3.0"
+          - ruby-version: "3.1"
+          - ruby-version: "3.2"
+          - ruby-version: "3.3"
+          - ruby-version: "3.4"
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby-version }}
-          bundler-cache: true
-      - name: Uninstall existing Bundler
-        run: |
-          gem uninstall bundler -a -x || true
+          # Disable bundler-cache when a custom bundler version is required,
+          # as setup-ruby's cache is tied to the bundler it installs.
+          bundler-cache: ${{ !matrix.bundler-version }}
       - name: Install Bundler
-        run: |
-          if [[ "${{ matrix.ruby-version }}" == "2.5" ]]; then
-            gem install bundler -v "~> 2.3.27"
-          elif [[ "${{ matrix.ruby-version }}" == "2.6" || "${{ matrix.ruby-version }}" == "2.7" ]]; then
-            gem install bundler -v "~> 2.4.0"
-          fi
+        if: matrix.bundler-version
+        run: gem install bundler -v "~> ${{ matrix.bundler-version }}"
+      - name: Install gems
+        if: matrix.bundler-version
+        run: bundle install
       - name: Build and run tests
         env:
           COVERAGE: true
+          # TERM is required for colored/formatted test output in CI
           TERM: xterm
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-        run: |
-          bundle exec rake test
+        run: bundle exec rake test
