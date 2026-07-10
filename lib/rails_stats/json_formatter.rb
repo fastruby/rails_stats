@@ -17,6 +17,8 @@ module RailsStats
       @result << stat_hash("Tests", @tests_total).merge(code_test_hash) if @tests_total
       @result << stat_hash("Total", @grand_total).merge(code_test_hash) if @grand_total
 
+      @result << { "packs" => packs_breakdown } if calculator.packs?
+
       @result << { "schema_stats" => schema_info }
       @result << { "polymorphic_stats" => print_polymorphic_stats }
 
@@ -28,6 +30,22 @@ module RailsStats
     end
 
     private
+
+      # Per-pack / per-component breakdown, keyed by group name ("Core" plus
+      # each pack's relative path). Each group lists its concept stats followed
+      # by Code/Tests/Total rows for that group.
+      def packs_breakdown
+        @statistics_by_group.each_with_object({}) do |(group, group_statistics), out|
+          code, tests, grand = calculator.totals_for(group_statistics)
+
+          rows = group_statistics.map { |key, stats| stat_hash(key, stats) }
+          rows << stat_hash("Code", code).merge("total" => true)
+          rows << stat_hash("Tests", tests).merge("total" => true)
+          rows << stat_hash("Total", grand).merge("total" => true)
+
+          out[group] = rows
+        end
+      end
 
       def code_test_hash
         code  = calculator.code_loc

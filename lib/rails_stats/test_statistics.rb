@@ -1,6 +1,6 @@
 module RailsStats
   class TestStatistics
-    attr_reader :statistics, :total, :test
+    attr_reader :statistics, :total, :test, :directory
 
     SPEC_FOLDERS = ['controllers',
                     'functional',

@@ -8,12 +8,14 @@ module RailsStats
                          'assets']
 
     def initialize(root_directory)
-      @root_directory = root_directory
+      @root_directory = File.absolute_path(root_directory)
       @schema_path    = File.join(@root_directory, "db", "schema.rb")
       @structure_path = File.join(@root_directory, "db", "structure.sql")
+      @pack_roots     = PackFinder.find(@root_directory)
       @key_concepts   = calculate_key_concepts
       @projects       = calculate_projects
       @statistics     = calculate_statistics
+      @statistics_by_group = calculate_statistics_by_group
       @code_loc       = calculate_code
       @test_loc       = calculate_tests
       @schema         = calculate_create_table_calls
@@ -21,7 +23,31 @@ module RailsStats
       @files_total, @code_total, @tests_total, @grand_total = calculate_totals
     end
 
-    attr_reader :code_loc, :code_total, :files_total, :grand_total, :statistics, :test_loc, :tests_total, :schema, :schema_path, :structure_path, :polymorphic
+    attr_reader :code_loc, :code_total, :files_total, :grand_total, :statistics, :test_loc, :tests_total, :schema, :schema_path, :structure_path, :polymorphic, :pack_roots, :statistics_by_group
+
+    CORE_GROUP = "Core".freeze
+
+    # Returns true when the application is split into packs/components, i.e.
+    # there is at least one group beyond the core application.
+    def packs?
+      @pack_roots.any?
+    end
+
+    # Given a {concept => CodeStatisticsCalculator} hash (such as one of the
+    # values in +statistics_by_group+ or the flat +statistics+), returns the
+    # [code, tests, grand] totals for that group.
+    def totals_for(group_statistics)
+      code  = CodeStatisticsCalculator.new
+      tests = CodeStatisticsCalculator.new
+      grand = CodeStatisticsCalculator.new
+
+      group_statistics.each_value do |stats|
+        grand.add(stats)
+        stats.test ? tests.add(stats) : code.add(stats)
+      end
+
+      [code, tests, grand]
+    end
 
     private
 
@@ -83,7 +109,23 @@ module RailsStats
       end
 
       def calculate_root_projects
-        [RootStatistics.new(@root_directory)]
+        projects = [RootStatistics.new(@root_directory)]
+        projects + calculate_pack_root_projects
+      end
+
+      # Packs that are not self-contained gems/engines (no gemspec) still have
+      # a `lib` (and sometimes `config`) directory that would otherwise be
+      # missed, since only the root RootStatistics scans the top-level lib.
+      # Gems are already covered by GemStatistics, so skip them here to avoid
+      # double-counting.
+      def calculate_pack_root_projects
+        @pack_roots.reject { |pack_root| gem_pack?(pack_root) }.collect do |pack_root|
+          RootStatistics.new(pack_root)
+        end
+      end
+
+      def gem_pack?(pack_root)
+        Dir[File.join(pack_root, "*.gemspec")].any?
       end
 
       def calculate_cucumber_projects
@@ -102,6 +144,62 @@ module RailsStats
           end
         end
         out
+      end
+
+      # Same aggregation as +calculate_statistics+, but keeps each project's
+      # numbers grouped by the pack/component it belongs to (or "Core"). The
+      # returned hash is ordered with "Core" first followed by packs sorted by
+      # their relative path.
+      def calculate_statistics_by_group
+        grouped = {}
+        @projects.each do |project|
+          group = group_key_for(project.directory)
+          grouped[group] ||= {}
+          project.statistics.each do |key, stats|
+            grouped[group][key] ||= CodeStatisticsCalculator.new(project.test)
+            grouped[group][key].add(stats)
+          end
+        end
+
+        # Drop empty concepts so a pack with, say, only models does not list a
+        # bunch of zero-line rows.
+        grouped.each_value do |group_statistics|
+          group_statistics.delete_if { |_key, stats| stats.lines == 0 }
+        end
+        grouped.delete_if { |_group, group_statistics| group_statistics.empty? }
+
+        sort_groups(grouped)
+      end
+
+      def sort_groups(grouped)
+        ordered = {}
+        ordered[CORE_GROUP] = grouped[CORE_GROUP] if grouped.key?(CORE_GROUP)
+        grouped.keys.reject { |key| key == CORE_GROUP }.sort.each do |key|
+          ordered[key] = grouped[key]
+        end
+        ordered
+      end
+
+      # Maps a project directory to its group: the relative path of the pack it
+      # lives in, or "Core" when it belongs to the main application.
+      def group_key_for(directory)
+        pack_root = pack_root_for(directory)
+        return CORE_GROUP unless pack_root
+
+        relative = pack_root.sub(/\A#{Regexp.escape(@root_directory)}\/?/, "")
+        relative.empty? ? CORE_GROUP : relative
+      end
+
+      # Returns the most specific (longest matching) pack root that contains the
+      # given directory, or nil when it is not part of any pack.
+      def pack_root_for(directory)
+        directory = File.absolute_path(directory.to_s)
+        best = nil
+        @pack_roots.each do |pack_root|
+          next unless directory == pack_root || directory.start_with?("#{pack_root}/")
+          best = pack_root if best.nil? || pack_root.length > best.length
+        end
+        best
       end
 
       def calculate_totals

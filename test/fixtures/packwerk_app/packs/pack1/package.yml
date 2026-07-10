@@ -1,0 +1,3 @@
+enforce_dependencies: true
+dependencies:
+  - packs/pack2

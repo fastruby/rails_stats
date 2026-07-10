@@ -5,16 +5,10 @@ module RailsStats
     def to_s
       Bundler::Stats::CLI.start(['--format', 'text'])
 
-      print_header
-      sorted_keys = @statistics.keys.sort
-      sorted_keys.each { |key| print_line(key, @statistics[key]) }
-      print_splitter
-
-      if @grand_total
-        print_line("Code", @code_total)
-        print_line("Tests", @tests_total)
-        print_line("Total", @grand_total)
-        print_splitter
+      if calculator.packs?
+        print_grouped
+      else
+        print_flat
       end
 
       print_code_test_stats
@@ -23,6 +17,44 @@ module RailsStats
     end
 
     private
+
+      def print_flat
+        print_table(@statistics)
+      end
+
+      def print_grouped
+        @statistics_by_group.each do |group, group_statistics|
+          puts "== #{group_label(group)} =="
+          print_table(group_statistics)
+          puts ""
+        end
+
+        puts "== #{grand_total_label} =="
+        print_table(@statistics)
+      end
+
+      def group_label(group)
+        group == RailsStats::StatsCalculator::CORE_GROUP ? "Core Application" : "Pack: #{group}"
+      end
+
+      def grand_total_label
+        "Total (all packs)"
+      end
+
+      # Prints a full table (header, one line per concept, and Code/Tests/Total
+      # totals) for the given {concept => CodeStatisticsCalculator} hash.
+      def print_table(statistics)
+        code, tests, grand = calculator.totals_for(statistics)
+
+        print_header
+        statistics.keys.sort.each { |key| print_line(key, statistics[key]) }
+        print_splitter
+
+        print_line("Code", code)
+        print_line("Tests", tests)
+        print_line("Total", grand)
+        print_splitter
+      end
 
       def print_header
         print_splitter

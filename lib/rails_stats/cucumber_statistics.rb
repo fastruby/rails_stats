@@ -1,6 +1,6 @@
 module RailsStats
   class CucumberStatistics
-    attr_reader :statistics, :total, :test
+    attr_reader :statistics, :total, :test, :directory
 
     def initialize(directory)
       @test = true
