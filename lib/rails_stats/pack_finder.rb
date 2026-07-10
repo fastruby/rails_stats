@@ -16,7 +16,10 @@ module RailsStats
 
     CODE_FOLDERS   = %w[app lib spec test].freeze
     PACK_CONTAINERS = %w[packs components].freeze
-    IGNORED_PATH   = %r{/(vendor|node_modules|tmp|\.git)/}.freeze
+
+    # Path regex used to filter glob results to skip vendored/generated
+    # directories. Built from the shared RailsStats::IGNORED_DIRS list.
+    IGNORED_PATH   = %r{/(#{IGNORED_DIRS.map { |dir| Regexp.escape(dir) }.join("|")})/}.freeze
 
     # Returns the absolute paths of every detected pack/component, sorted.
     def find(root_directory)

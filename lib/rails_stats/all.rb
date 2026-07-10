@@ -1,3 +1,10 @@
+module RailsStats
+  # Vendored / generated directory names we never descend into or treat as a
+  # pack. Shared by PackFinder (which builds IGNORED_PATH from it) and Util
+  # (which matches them by basename while walking the tree).
+  IGNORED_DIRS = %w[node_modules vendor tmp log .git].freeze
+end
+
 require 'rails_stats/stats_calculator'
 require 'rails_stats/stats_formatter'
 require 'rails_stats/json_formatter'
