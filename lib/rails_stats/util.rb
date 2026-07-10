@@ -81,8 +81,16 @@ module RailsStats
       Dir.foreach(directory) do |file_name|
         path = "#{directory}/#{file_name}"
 
-        if File.directory?(path) && (/^\./ !~ file_name)
+        # Skip vendored / generated directories (e.g. a pack's
+        # app/webpack/node_modules). Pruning here avoids both the wasted walk
+        # and opening a directory that merely looks like a source file, such as
+        # node_modules/popper.js (which would raise Errno::EISDIR).
+        if File.directory?(path)
+          next if /^\./ =~ file_name
+          next if IGNORED_DIRS.include?(file_name)
+
           stats.add(calculate_directory_statistics(path, pattern))
+          next
         end
 
         next unless file_name =~ pattern

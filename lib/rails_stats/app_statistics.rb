@@ -1,6 +1,6 @@
 module RailsStats
   class AppStatistics
-    attr_reader :statistics, :total, :test
+    attr_reader :statistics, :total, :test, :directory
 
     def initialize(directory)
       @directories = []

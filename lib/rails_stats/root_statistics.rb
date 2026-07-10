@@ -1,6 +1,6 @@
 module RailsStats
   class RootStatistics
-    attr_reader :statistics, :total, :test
+    attr_reader :statistics, :total, :test, :directory
 
     ROOT_FOLDERS = {
       "lib" => "Libraries",

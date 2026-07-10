@@ -71,6 +71,56 @@ Directory: /path/to/app/
 $ for dir in /path/to/many/engines/*/; do bundle exec rake stats[$dir]; done
 ```
 
+### Component-based and Packwerk (packs) applications
+
+RailsStats understands large Rails monoliths that are organized into
+[packs](https://github.com/Shopify/packwerk) (via
+[packs-rails](https://github.com/rubyatscale/packs-rails)) or
+[components](https://cbra.info/) (component-based Rails).
+
+When packs or components are detected, `rake stats` automatically prints a
+breakdown per pack/component, a `Core Application` section for everything that
+lives in the main app, and a `Total (all packs)` section that aggregates the
+whole monolith:
+
+```bash
+$ bundle exec rake stats
+
+== Core Application ==
++----------------------+---------+---------+---------+---------+---------+-----+-------+
+| Name                 | Files   | Lines   |     LOC | Classes | Methods | M/C | LOC/M |
++----------------------+---------+---------+---------+---------+---------+-----+-------+
+| ...                                                                                 |
++----------------------+---------+---------+---------+---------+---------+-----+-------+
+
+== Pack: packs/pack1 ==
++----------------------+---------+---------+---------+---------+---------+-----+-------+
+| ...                                                                                 |
++----------------------+---------+---------+---------+---------+---------+-----+-------+
+
+== Total (all packs) ==
++----------------------+---------+---------+---------+---------+---------+-----+-------+
+| ...                                                                                 |
++----------------------+---------+---------+---------+---------+---------+-----+-------+
+```
+
+A directory is treated as a pack when it contains a `package.yml` file (the
+Packwerk marker) or when it lives directly under a `packs/` or `components/`
+directory and holds any of the usual code folders (`app`, `lib`, `spec`,
+`test`). Nested packs (`packs/a/packs/b`) are supported.
+
+You can also scope stats to a single pack, even from inside a booted Rails app:
+
+```bash
+$ bundle exec rake stats[packs/pack1]
+```
+
+The same breakdown is available in JSON under a `"packs"` key:
+
+```bash
+$ bundle exec rake stats[.,json]
+```
+
 ### Within your Rails project
 
 You can also include it within your Rails application to _replace_ the default `rake stats` implementation.
