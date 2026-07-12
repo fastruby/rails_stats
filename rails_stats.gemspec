@@ -6,8 +6,8 @@ require 'rails_stats/version'
 Gem::Specification.new do |spec|
   spec.name          = "rails_stats"
   spec.version       = RailsStats::VERSION
-  spec.authors       = ["Brian Leonard"]
-  spec.email         = ["brian@bleonard.com"]
+  spec.authors       = ["Brian Leonard", "Ernesto Tagwerker"]
+  spec.email         = ["brian@bleonard.com", "ernesto@ombulabs.com"]
   spec.summary       = %q{Analyze a Rails project}
   spec.description   = %q{Point it to a directory and see stuff about the app}
   spec.homepage      = "https://github.com/fastruby/rails_stats"
