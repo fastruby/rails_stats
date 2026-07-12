@@ -1,4 +1,8 @@
-# main ([unreleased](https://github.com/fastruby/rails_stats/compare/v2.1.0...main))
+# main ([unreleased](https://github.com/fastruby/rails_stats/compare/v2.2.0...main))
+
+* [FEATURE: ABC](LINK)
+
+# v2.2.0 ([commits](https://github.com/fastruby/rails_stats/compare/v2.2.0...v2.1.0))
 
 * [FEATURE: Add a `rails-stats` command line executable that accepts an absolute or relative directory](https://github.com/fastruby/rails_stats/pull/49)
 * [FEATURE: Support component-based and Packwerk (packs) applications with a per-pack and Core breakdown](https://github.com/fastruby/rails_stats/issues/23)
