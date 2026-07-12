@@ -6,6 +6,29 @@ There were a few things missing to the included `rake stats`
 
 RailsStats mainly adds the ability to be run from outside the project in question. This can be helpful if the app you are interested in can not be booted for some reason.
 
+### Run it as a command line tool
+
+Once the gem is installed you can point the `rails-stats` executable at any
+directory, without setting up a `Rakefile`. It accepts both absolute and
+relative paths:
+
+```bash
+$ rails-stats /path/to/app
+$ rails-stats path/to/app
+```
+
+When no path is given it defaults to the current directory:
+
+```bash
+$ rails-stats
+```
+
+You can also request JSON output by passing `json` as a second argument:
+
+```bash
+$ rails-stats path/to/app json
+```
+
 ### Run it outside Rails project
 
 You will need a `Rakefile` in the directory where you call `rake` and you will

@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Standalone CLI for running rails_stats against a directory without having to
+# set up a Rakefile. Accepts both absolute and relative paths:
+#
+#   rails-stats /path/to/app
+#   rails-stats path/to/app
+#   rails-stats                 # defaults to the current directory
+#   rails-stats path/to/app json
+#
+$LOAD_PATH.unshift(File.expand_path("../lib", __dir__))
+
+require "rails_stats/all"
+
+path = ARGV[0] || "."
+format = ARGV[1] || ""
+
+root_directory = File.absolute_path(path)
+
+unless File.directory?(root_directory)
+  warn "rails-stats: no such directory - #{path}"
+  exit 1
+end
+
+puts "\nDirectory: #{root_directory}\n\n"
+RailsStats::CodeStatistics.new(root_directory, format: format).to_s
