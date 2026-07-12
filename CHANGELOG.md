@@ -1,5 +1,6 @@
 # main ([unreleased](https://github.com/fastruby/rails_stats/compare/v2.1.0...main))
 
+* [FEATURE: Add a `rails-stats` command line executable that accepts an absolute or relative directory](https://github.com/fastruby/rails_stats/pull/49)
 * [FEATURE: Support component-based and Packwerk (packs) applications with a per-pack and Core breakdown](https://github.com/fastruby/rails_stats/issues/23)
 * [BUGFIX: Respect an explicit path argument (e.g. `rake stats[packs/pack1]`) when running inside a booted Rails app](https://github.com/fastruby/rails_stats/issues/23)
 * [CHORE: Improve the GH Test Workflow](https://github.com/fastruby/rails_stats/pull/35)
