@@ -31,18 +31,11 @@ $ rails-stats path/to/app json
 
 ### Run it outside Rails project
 
-You will need a `Rakefile` in the directory where you call `rake` and you will
-need to require `rails_stats`:
-
-```ruby
-# Rakefile
-require "rails_stats"
-```
-
-Then you can call it:
+The quickest way is the `rails-stats` executable, which does not require a
+`Rakefile`:
 
 ```bash
-$ rake stats\[/path/to/app/\]
+$ rails-stats /path/to/app
 
 Directory: /path/to/app/
 
@@ -88,10 +81,20 @@ Directory: /path/to/app/
   Code LOC: 145     Test LOC: 6     Code to Test Ratio: 1:0.0  Files: 34
 ```
 
+If you would rather go through `rake`, add a `Rakefile` in the directory where
+you call `rake` that requires `rails_stats`:
+
+```ruby
+# Rakefile
+require "rails_stats"
+```
+
+Then call `rake stats\[/path/to/app/\]`.
+
 ### Run it on many Rails engines
 
 ```bash
-$ for dir in /path/to/many/engines/*/; do bundle exec rake stats[$dir]; done
+$ for dir in /path/to/many/engines/*/; do rails-stats "$dir"; done
 ```
 
 ### Component-based and Packwerk (packs) applications
@@ -263,7 +266,7 @@ $ bundle exec rake stats[/users/brian/examples/redmine/]
 If you want to export the details using JSON, you can use this command:
 
 ```
-$ rake stats\[test/dummy,json\]
+$ rails-stats test/dummy json
 
 Directory: /Users/etagwerker/Projects/redmine
 
