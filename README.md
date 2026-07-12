@@ -29,6 +29,30 @@ You can also request JSON output by passing `json` as a second argument:
 $ rails-stats path/to/app json
 ```
 
+#### Calling it through `rake`
+
+If you prefer `rake`, there are two ways to reach the same code:
+
+- **From any directory**, add a `Rakefile` that requires `rails_stats` and call
+  the task with a path:
+
+  ```ruby
+  # Rakefile
+  require "rails_stats"
+  ```
+
+  ```bash
+  $ rake stats\[/path/to/app/\]
+  ```
+
+- **Inside your own Rails app**, add `rails_stats` to your `Gemfile` to
+  _replace_ the default `rake stats` implementation (you might need to
+  `require "rails_stats"` in your `Rakefile`), then run:
+
+  ```bash
+  $ bundle exec rake stats
+  ```
+
 ### Run it outside Rails project
 
 The quickest way is the `rails-stats` executable, which does not require a
@@ -81,16 +105,6 @@ Directory: /path/to/app/
   Code LOC: 145     Test LOC: 6     Code to Test Ratio: 1:0.0  Files: 34
 ```
 
-If you would rather go through `rake`, add a `Rakefile` in the directory where
-you call `rake` that requires `rails_stats`:
-
-```ruby
-# Rakefile
-require "rails_stats"
-```
-
-Then call `rake stats\[/path/to/app/\]`.
-
 ### Run it on many Rails engines
 
 ```bash
@@ -104,13 +118,13 @@ RailsStats understands large Rails monoliths that are organized into
 [packs-rails](https://github.com/rubyatscale/packs-rails)) or
 [components](https://cbra.info/) (component-based Rails).
 
-When packs or components are detected, `rake stats` automatically prints a
+When packs or components are detected, `rails-stats` automatically prints a
 breakdown per pack/component, a `Core Application` section for everything that
 lives in the main app, and a `Total (all packs)` section that aggregates the
 whole monolith:
 
 ```bash
-$ bundle exec rake stats
+$ rails-stats /path/to/monolith
 
 == Core Application ==
 +----------------------+---------+---------+---------+---------+---------+-----+-------+
@@ -135,29 +149,16 @@ Packwerk marker) or when it lives directly under a `packs/` or `components/`
 directory and holds any of the usual code folders (`app`, `lib`, `spec`,
 `test`). Nested packs (`packs/a/packs/b`) are supported.
 
-You can also scope stats to a single pack, even from inside a booted Rails app:
+You can also scope stats to a single pack:
 
 ```bash
-$ bundle exec rake stats[packs/pack1]
+$ rails-stats packs/pack1
 ```
 
 The same breakdown is available in JSON under a `"packs"` key:
 
 ```bash
-$ bundle exec rake stats[.,json]
-```
-
-### Within your Rails project
-
-You can also include it within your Rails application to _replace_ the default `rake stats` implementation.
-
-Just add rails_stats to your Gemfile.
-Depending on your setup, you might need to `require rails_stats` in your Rakefile.
-
-Then you'll be able to just run:
-
-```bash
-$ bundle exec rake stats
+$ rails-stats . json
 ```
 
 ### Things it knows about
@@ -177,7 +178,7 @@ Here are some open source Rails projects and their output.
 
 ```bash
 
-$ bundle exec rake stats[/users/brian/examples/redmine/]
+$ rails-stats /users/brian/examples/redmine/
 
 +-----------------------|------------|----------------+
 |                  Name | Total Deps | 1st Level Deps |
