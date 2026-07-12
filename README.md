@@ -61,7 +61,7 @@ The quickest way is the `rails-stats` executable, which does not require a
 ```bash
 $ rails-stats /path/to/app
 
-Directory: /path/to/app/
+Directory: /path/to/app
 
 +-----------------------|------------|----------------+
 |                  Name | Total Deps | 1st Level Deps |
